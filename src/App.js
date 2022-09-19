@@ -3,6 +3,7 @@ import Nav from "./components/Nav";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+import Account from "./pages/Account";
 import { UserProvider } from './context/UserContext'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </Router>
     </UserProvider>

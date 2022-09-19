@@ -9,24 +9,27 @@ export function UserProvider({ children }) {
         password: "",
     });
 
-    let handleChange = (e) => {
+    let loginChange = (e) => {
         const newData = { ...user };
         newData[e.target.name] = e.target.value;
         setUser(newData);
     };
 
-    let submit = (e) => {
+    let error_status;
+
+    let login = (e) => {
         e.preventDefault();
         axios
             .post("http://127.0.0.1:8000/api/login", user)
             .then((res) => {
-                console.log(res);
-                console.log(res.data.token);
                 localStorage.setItem('token', JSON.stringify(res.data.token))
                 window.location.reload(false);
             })
             .catch((e) => {
-                console.log(e.response);
+                console.log(e.response)
+                // console.log(e.response.status);
+                error_status = e.response.status;
+                // console.log(error_status)
             });
     };
 
@@ -36,7 +39,7 @@ export function UserProvider({ children }) {
     }
 
     return (
-        <UserContext.Provider value={{ handleChange, submit, user, logout }}>{children}</UserContext.Provider >
+        <UserContext.Provider value={{ loginChange, login, user, logout, error_status }}>{children}</UserContext.Provider >
     )
 }
 

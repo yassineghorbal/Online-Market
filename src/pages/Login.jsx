@@ -3,8 +3,7 @@ import { useContext } from "react";
 import UserContext from "../context/UserContext";
 
 export default function Login() {
-  const { user, submit, handleChange } = useContext(UserContext);
-  console.log(user);
+  const { login, loginChange } = useContext(UserContext);
 
   return (
     <div className='w-11/12 p-10 rounded max-w-lg mx-auto shadow-xl'>
@@ -15,14 +14,18 @@ export default function Login() {
         </p>
       </header>
 
-      <form onSubmit={submit}>
+      <p className='my-5 text-center text-red-500 hidden' id='error_401'>
+        Invalid Credentials
+      </p>
+
+      <form onSubmit={login}>
         <div className='mb-6'>
           <label className='inline-block text-lg mb-2'>Email</label>
           <input
             type='email'
             className='border border-gray-200 rounded p-2 w-full'
             name='email'
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => loginChange(e)}
           />
         </div>
         <div className='mb-6'>
@@ -31,7 +34,7 @@ export default function Login() {
             type='password'
             className='border border-gray-200 rounded p-2 w-full'
             name='password'
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => loginChange(e)}
           />
         </div>
         <div className='mb-6'>
