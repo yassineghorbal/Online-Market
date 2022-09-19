@@ -1,30 +1,11 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
-export default function Login() {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
 
-  let handleChange = (e) => {
-    const newData = { ...data };
-    newData[e.target.name] = e.target.value;
-    setData(newData);
-    console.log(data);
-  };
-  let submit = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://127.0.0.1:8000/api/login", data)
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-      })
-      .catch((e) => {
-        console.log(e.response.status);
-      });
-  };
+export default function Login() {
+  const { user, submit, handleChange } = useContext(UserContext);
+  console.log(user);
+
   return (
     <div className='w-11/12 p-10 rounded max-w-lg mx-auto shadow-xl'>
       <header className='text-center'>
@@ -36,9 +17,7 @@ export default function Login() {
 
       <form onSubmit={submit}>
         <div className='mb-6'>
-          <label for='email' className='inline-block text-lg mb-2'>
-            Email
-          </label>
+          <label className='inline-block text-lg mb-2'>Email</label>
           <input
             type='email'
             className='border border-gray-200 rounded p-2 w-full'
@@ -47,9 +26,7 @@ export default function Login() {
           />
         </div>
         <div className='mb-6'>
-          <label for='password' className='inline-block text-lg mb-2'>
-            Password
-          </label>
+          <label className='inline-block text-lg mb-2'>Password</label>
           <input
             type='password'
             className='border border-gray-200 rounded p-2 w-full'

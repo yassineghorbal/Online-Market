@@ -3,10 +3,11 @@ import Nav from "./components/Nav";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+import { UserProvider } from './context/UserContext'
 
 function App() {
   return (
-    <div>
+    <UserProvider>
       <Router>
         <Nav />
         <Routes>
@@ -15,7 +16,7 @@ function App() {
           <Route path='/register' element={<Register />} />
         </Routes>
       </Router>
-    </div>
+    </UserProvider>
   );
 }
 

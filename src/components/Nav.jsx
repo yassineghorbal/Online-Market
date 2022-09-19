@@ -4,6 +4,35 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Nav() {
+  const token = JSON.parse(localStorage.getItem("token"));
+  console.log(token);
+
+  let renderUl = () => {
+    if (token === null) {
+      return (
+        <ul className='hidden md:flex space-x-6 text-lg mr-10'>
+          <li className=''>
+            <Link to='/register'>Register</Link>
+          </li>
+          <li className=''>
+            <Link to='/login'>Log in</Link>
+          </li>
+        </ul>
+      );
+    } else {
+      return (
+        <ul className='hidden md:flex space-x-6 text-lg mr-10'>
+          <li className=''>
+            <Link to='/account'>Account</Link>
+          </li>
+          <li className=''>
+            <Link to='/logout'>Log out</Link>
+          </li>
+        </ul>
+      );
+    }
+  };
+
   let [show, setShow] = useState(true);
   let smallNav = document.getElementById("nav");
   let change = () => {
@@ -40,14 +69,7 @@ export default function Nav() {
             Search
           </button>
         </form>
-        <ul className='hidden md:flex space-x-6 text-lg mr-10'>
-          <li className=''>
-            <Link to='/register'>Register</Link>
-          </li>
-          <li className=''>
-            <Link to='/login'>Log in</Link>
-          </li>
-        </ul>
+        {renderUl()}
         <button className='md:hidden block' id='toggle' onClick={change}>
           <GiHamburgerMenu className='text-lg' />
         </button>
