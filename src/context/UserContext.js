@@ -23,13 +23,20 @@ export function UserProvider({ children }) {
                 console.log(res);
                 console.log(res.data.token);
                 localStorage.setItem('token', JSON.stringify(res.data.token))
+                window.location.reload(false);
             })
             .catch((e) => {
                 console.log(e.response);
             });
     };
+
+    let logout = () => {
+        localStorage.removeItem('token')
+        window.location.reload(false);
+    }
+
     return (
-        <UserContext.Provider value={{ handleChange, submit, user }}>{children}</UserContext.Provider >
+        <UserContext.Provider value={{ handleChange, submit, user, logout }}>{children}</UserContext.Provider >
     )
 }
 

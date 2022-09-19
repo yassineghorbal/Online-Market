@@ -1,11 +1,14 @@
 import logo from "../assets/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 export default function Nav() {
   const token = JSON.parse(localStorage.getItem("token"));
   console.log(token);
+
+  const { logout } = useContext(UserContext);
 
   let renderUl = () => {
     if (token === null) {
@@ -26,7 +29,7 @@ export default function Nav() {
             <Link to='/account'>Account</Link>
           </li>
           <li className=''>
-            <Link to='/logout'>Log out</Link>
+            <button onClick={logout}>Log out</button>
           </li>
         </ul>
       );
