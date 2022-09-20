@@ -8,7 +8,8 @@ import UserContext from "../context/UserContext";
 export default function Nav() {
   const token = JSON.parse(localStorage.getItem("token"));
 
-  const { logout } = useContext(UserContext);
+  const { logout, user } = useContext(UserContext);
+  console.log(user);
 
   let renderUl = () => {
     if (token === null) {
@@ -31,7 +32,7 @@ export default function Nav() {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-10'>
           <li className='text-sm'>
-            <Link to='/account' className='flex'>
+            <Link to={"/account/" + user.id} className='flex'>
               Account &nbsp;
               <VscAccount />
             </Link>

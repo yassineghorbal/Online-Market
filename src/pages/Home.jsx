@@ -53,7 +53,16 @@ export default function Home() {
         </div>
       );
     } else {
-      return;
+      return (
+        <div className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border flex'>
+          <p className='text-lg text-green-700 m-5'>
+            You need to sell something ?
+          </p>
+          <button className='border border-black m-3 px-2 text-sm hover:border-green-700 hover:bg-green-700 hover:text-white'>
+            Start Now
+          </button>
+        </div>
+      );
     }
   };
   return (
