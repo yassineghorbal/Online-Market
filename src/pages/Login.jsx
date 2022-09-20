@@ -1,9 +1,36 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
+import axios from "axios";
 
 export default function Login() {
-  const { login, loginChange } = useContext(UserContext);
+  const { user, loginChange } = useContext(UserContext);
+
+  let error_status;
+  const error_401 = document.getElementById("error_401");
+  const error_422 = document.getElementById("error_422");
+  let navigate = useNavigate();
+  let login = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://127.0.0.1:8000/api/login", user)
+      .then((res) => {
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        navigate("/");
+        window.location.reload(false);
+      })
+      .catch((e) => {
+        console.log(e.response);
+        error_status = e.response.status;
+        if (error_status === 401) {
+          error_401.style.display = "block";
+          error_422.style.display = "none";
+        } else if (error_status === 422) {
+          error_422.style.display = "block";
+          error_401.style.display = "none";
+        }
+      });
+  };
 
   return (
     <div className='w-11/12 p-10 rounded max-w-lg mx-auto shadow-xl'>
@@ -16,6 +43,9 @@ export default function Login() {
 
       <p className='my-5 text-center text-red-500 hidden' id='error_401'>
         Invalid Credentials
+      </p>
+      <p className='my-5 text-center text-red-500 hidden' id='error_422'>
+        All fields are required
       </p>
 
       <form onSubmit={login}>

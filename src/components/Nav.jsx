@@ -6,7 +6,6 @@ import UserContext from "../context/UserContext";
 
 export default function Nav() {
   const token = JSON.parse(localStorage.getItem("token"));
-  console.log(token);
 
   const { logout } = useContext(UserContext);
 
