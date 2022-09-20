@@ -5,19 +5,22 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Account from "./pages/Account";
 import { UserProvider } from './context/UserContext'
+import { ItemsProvider } from "./context/ItemsContext";
 
 function App() {
   return (
     <UserProvider>
-      <Router>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path="/account" element={<Account />} />
-        </Routes>
-      </Router>
+      <ItemsProvider>
+        <Router>
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path="/account" element={<Account />} />
+          </Routes>
+        </Router>
+      </ItemsProvider>
     </UserProvider>
   );
 }

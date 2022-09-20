@@ -1,9 +1,13 @@
 import "../scss/home.scss";
 import hero_img from "../assets/hero_img.jpg";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useContext, useEffect } from "react";
+import ItemsContext from "../context/ItemsContext";
 
 export default function Home() {
   const token = JSON.parse(localStorage.getItem("token"));
+  let { items, setItems } = useContext(ItemsContext);
 
   const renderHero = () => {
     if (token === null) {
@@ -12,10 +16,10 @@ export default function Home() {
           id='hero'
           className='md:flex shadow-md items-center justify-center m-10'>
           <div className='md:w-1/2 w-full md:ml-20 md:text-center text-left'>
-            <p className='text-2xl md:ml-0 ml-5 md:mt-0 mt-5'>
+            <p className='md:text-2xl text-lg md:ml-0 ml-5 md:mt-0 mt-5'>
               Sell or Buy What ever You Like For Free
             </p>
-            <div className='flex justify-center'>
+            <div className='flex md:justify-center justify-start'>
               <Link to='/register'>
                 <button className='m-5 text-green-700 border border-green-700 p-5 hover:rounded-full hover:bg-green-700 hover:text-white'>
                   Create An Account
@@ -40,7 +44,7 @@ export default function Home() {
   return (
     <>
       {renderHero()}
-      <div></div>
+      <div>AAA</div>
     </>
   );
 }
