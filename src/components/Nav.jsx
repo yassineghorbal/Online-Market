@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { VscAccount, VscSignIn, VscSignOut } from "react-icons/vsc";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
@@ -13,22 +14,33 @@ export default function Nav() {
     if (token === null) {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-10'>
-          <li className=''>
-            <Link to='/register'>Register</Link>
+          <li className='text-sm'>
+            <Link to='/register' className='flex'>
+              Register &nbsp; <VscAccount />{" "}
+            </Link>
           </li>
-          <li className=''>
-            <Link to='/login'>Log in</Link>
+          <li className='text-sm'>
+            <Link to='/login' className='flex'>
+              Log in &nbsp;
+              <VscSignIn />
+            </Link>
           </li>
         </ul>
       );
     } else {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-10'>
-          <li className=''>
-            <Link to='/account'>Account</Link>
+          <li className='text-sm'>
+            <Link to='/account' className='flex'>
+              Account &nbsp;
+              <VscAccount />
+            </Link>
           </li>
-          <li className=''>
-            <button onClick={logout}>Log out</button>
+          <li className='text-sm'>
+            <button onClick={logout} className='flex'>
+              Log out &nbsp;
+              <VscSignOut />
+            </button>
           </li>
         </ul>
       );
@@ -71,7 +83,7 @@ export default function Nav() {
   };
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth <= 768 && show === true) {
+    if (window.innerWidth <= 768 && show === false) {
       smallNav.style.display = "block";
     } else {
       smallNav.style.display = "none";

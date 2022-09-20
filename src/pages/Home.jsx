@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useCallback, useContext, useEffect, useRef } from "react";
 import ItemsContext from "../context/ItemsContext";
+import Item from "../components/Item";
 
 export default function Home() {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -15,7 +16,7 @@ export default function Home() {
     axios.get(`http://127.0.0.1:8000/api/items`).then((res) => {
       items.current = res.data;
       setItems(items.current);
-      console.log(items);
+      console.log(items.current);
     });
   }, [items, setItems]);
 
@@ -58,10 +59,10 @@ export default function Home() {
   return (
     <>
       {renderHero()}
-      <div>
+      <div className='mt-10'>
         <ul>
           {items.current.map((item) => (
-            <li key={item.id}>{item.name}</li>
+            <Item key={item.id} item={item} />
           ))}
         </ul>
       </div>
