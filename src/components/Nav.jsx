@@ -35,6 +35,34 @@ export default function Nav() {
     }
   };
 
+  let renderUlSmallNav = () => {
+    if (token === null) {
+      return (
+        <ul className='flex-row'>
+          <li className='mb-3'></li>
+          <li className='mb-3'>
+            <Link to='/register'>Register</Link>
+          </li>
+          <li>
+            <Link to='/login'>Log in</Link>
+          </li>
+        </ul>
+      );
+    } else {
+      return (
+        <ul className='flex-row'>
+          <li className='mb-3'></li>
+          <li className='mb-3'>
+            <Link to='/account'>Account</Link>
+          </li>
+          <li>
+            <button onClick={logout}>Log out</button>
+          </li>
+        </ul>
+      );
+    }
+  };
+
   let [show, setShow] = useState(true);
   let smallNav = document.getElementById("nav");
   let change = () => {
@@ -60,7 +88,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className='w-full flex justify-between items-center mb-4 text-gray-900 p-5 bg-gray-300'>
+      <nav className='w-full flex justify-between items-center mb-4 text-gray-900 p-5 bg-gray-300 h-14'>
         <Link to='/' className='text-2xl flex ml-0 md:ml-10'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           Online Market
@@ -78,25 +106,13 @@ export default function Nav() {
         <div
           id='nav'
           className='md:hidden absolute border top-16 w-11/12 py-2 text-center bg-white shadow-lg'>
-          <ul className='flex-row'>
-            <li className='mb-3'>
-              <form>
-                <input
-                  className='border border-black p-3'
-                  placeholder='Search'
-                />
-                <button className='border border-black bg-white px-2 hover:bg-black hover:text-white p-3'>
-                  Search
-                </button>
-              </form>
-            </li>
-            <li className='mb-3'>
-              <Link to='/register'>Register</Link>
-            </li>
-            <li>
-              <Link to='/login'>Log in</Link>
-            </li>
-          </ul>
+          <form>
+            <input className='border border-black p-3' placeholder='Search' />
+            <button className='border border-black bg-white px-2 hover:bg-black hover:text-white p-3'>
+              Search
+            </button>
+          </form>
+          {renderUlSmallNav()}
         </div>
       </nav>
     </>
