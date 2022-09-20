@@ -2,12 +2,26 @@ import "../scss/home.scss";
 import hero_img from "../assets/hero_img.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useRef } from "react";
 import ItemsContext from "../context/ItemsContext";
 
 export default function Home() {
   const token = JSON.parse(localStorage.getItem("token"));
   let { items, setItems } = useContext(ItemsContext);
+
+  items = useRef([]);
+
+  const getItems = useCallback(() => {
+    axios.get(`http://127.0.0.1:8000/api/items`).then((res) => {
+      items.current = res.data;
+      setItems(items.current);
+      console.log(items);
+    });
+  }, [items, setItems]);
+
+  useEffect(() => {
+    getItems();
+  }, [getItems]);
 
   const renderHero = () => {
     if (token === null) {
@@ -44,7 +58,13 @@ export default function Home() {
   return (
     <>
       {renderHero()}
-      <div>AAA</div>
+      <div>
+        <ul>
+          {items.current.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
