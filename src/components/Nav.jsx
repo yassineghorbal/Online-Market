@@ -88,7 +88,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className='w-full flex justify-between items-center mb-4 text-gray-900 p-5 bg-gray-300 h-14'>
+      <nav className='w-full flex justify-between items-center text-gray-900 p-5 h-14'>
         <Link to='/' className='text-2xl flex ml-0 md:ml-10'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           Online Market
