@@ -61,6 +61,15 @@ export default function Register() {
           />
         </div>
         <div className='mb-6'>
+          <label className='inline-block text-lg mb-2'>Phone</label>
+          <input
+            type='phone'
+            className='border border-gray-200 p-2 w-full'
+            name='phone'
+            onChange={(e) => registerChange(e)}
+          />
+        </div>
+        <div className='mb-6'>
           <label className='inline-block text-lg mb-2'>Email</label>
           <input
             type='email'

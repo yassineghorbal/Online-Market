@@ -1,5 +1,5 @@
 import hero_img from "../assets/hero_img.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCallback, useContext, useEffect, useRef } from "react";
 import ItemsContext from "../context/ItemsContext";
@@ -7,8 +7,7 @@ import Item from "../components/Item";
 
 export default function Home() {
   const token = JSON.parse(localStorage.getItem("token"));
-  const user_id = JSON.parse(localStorage.getItem("id"));
-  let { items, setItems } = useContext(ItemsContext);
+  let { items, setItems, itemData, itemDataChange } = useContext(ItemsContext);
 
   items = useRef([]);
 
@@ -36,6 +35,33 @@ export default function Home() {
     e.preventDefault();
     create_form.style.display = "none";
     logged_in_hero.style.display = "flex";
+  };
+
+  const error_422 = document.getElementById("error_422");
+  let error_status;
+  const navigate = useNavigate();
+  const createItem = (e) => {
+    e.preventDefault();
+    console.log(itemData);
+    axios
+      .post("http://127.0.0.1:8000/api/items", itemData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        console.log(token);
+        navigate("/");
+      })
+      .catch((e) => {
+        console.log(e.response);
+        console.log(token);
+        error_status = e.response.status;
+        if (error_status === 422) {
+          error_422.style.display = "block";
+        }
+      });
   };
 
   const renderHero = () => {
@@ -87,13 +113,17 @@ export default function Home() {
             <h1 className='text-lg text-green-700 m-5 p-3 text-center border border-green-700 w-2/3 mx-auto'>
               Add an item to sell
             </h1>
-            <form className='w-11/12 mx-auto'>
+            <p className='my-5 text-center text-red-500 hidden' id='error_422'>
+              All fields are required
+            </p>
+            <form onSubmit={createItem} className='w-11/12 mx-auto'>
               <div className='mb-6'>
                 <label className='inline-block text-lg mb-2'>Name</label>
                 <input
                   type='text'
                   className='border border-gray-200 p-2 w-full'
-                  name='name'
+                  name='item_name'
+                  onChange={(e) => itemDataChange(e)}
                 />
               </div>
               <div className='mb-6'>
@@ -101,6 +131,7 @@ export default function Home() {
                 <textarea
                   className='border border-gray-200 p-2 w-full'
                   name='description'
+                  onChange={(e) => itemDataChange(e)}
                 />
               </div>
               <div className='mb-6'>
@@ -109,6 +140,7 @@ export default function Home() {
                   type='number'
                   className='border border-gray-200 p-2 w-full'
                   name='price'
+                  onChange={(e) => itemDataChange(e)}
                 />
               </div>
               <div className='mb-6'>
@@ -118,16 +150,7 @@ export default function Home() {
                   className='border border-gray-200 p-2 w-full'
                   name='src'
                   placeholder='put a link to your hosted image here'
-                />
-              </div>
-              <div className='mb-6 hidden'>
-                <label className='inline-block text-lg mb-2'>Id</label>
-                <input
-                  type='number'
-                  className='border border-gray-200 p-2 w-full'
-                  name='user_id'
-                  value={user_id}
-                  readOnly
+                  onChange={(e) => itemDataChange(e)}
                 />
               </div>
               <div className='mb-6'>
