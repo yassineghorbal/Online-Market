@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Account from "./pages/Account";
 import { UserProvider } from './context/UserContext'
 import { ItemsProvider } from "./context/ItemsContext";
+import ShowItem from "./pages/ShowItem";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path="/user/:id" element={<Account />} />
+            <Route path='/user/:id/:id' element={<ShowItem />} />
           </Routes>
         </Router>
       </ItemsProvider>

@@ -1,5 +1,5 @@
 import hero_img from "../assets/hero_img.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useCallback, useContext, useEffect, useRef } from "react";
 import ItemsContext from "../context/ItemsContext";
@@ -39,7 +39,6 @@ export default function Home() {
 
   const error_422 = document.getElementById("error_422");
   let error_status;
-  const navigate = useNavigate();
   const createItem = (e) => {
     e.preventDefault();
     console.log(itemData);
@@ -51,12 +50,10 @@ export default function Home() {
       })
       .then((res) => {
         console.log(res);
-        console.log(token);
-        navigate("/");
+        window.location.reload(false);
       })
       .catch((e) => {
         console.log(e.response);
-        console.log(token);
         error_status = e.response.status;
         if (error_status === 422) {
           error_422.style.display = "block";
