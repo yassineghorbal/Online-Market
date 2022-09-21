@@ -1,4 +1,3 @@
-import "../scss/home.scss";
 import hero_img from "../assets/hero_img.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -8,6 +7,7 @@ import Item from "../components/Item";
 
 export default function Home() {
   const token = JSON.parse(localStorage.getItem("token"));
+  const user_id = JSON.parse(localStorage.getItem("id"));
   let { items, setItems } = useContext(ItemsContext);
 
   items = useRef([]);
@@ -54,13 +54,15 @@ export default function Home() {
       );
     } else {
       return (
-        <div className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border flex'>
+        <div className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border flex items-center'>
           <p className='text-lg text-green-700 m-5'>
             You need to sell something ?
           </p>
-          <button className='border border-black m-3 px-2 text-sm hover:border-green-700 hover:bg-green-700 hover:text-white'>
-            Start Now
-          </button>
+          <Link to={"/user/" + user_id + "/create"}>
+            <button className='border border-black m-3 px-2 text-sm hover:border-green-700 hover:bg-green-700 hover:text-white py-2'>
+              Start Now
+            </button>
+          </Link>
         </div>
       );
     }

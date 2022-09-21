@@ -17,6 +17,9 @@ export default function Register() {
         .post("http://127.0.0.1:8000/api/register", registerData)
         .then((res) => {
           localStorage.setItem("token", JSON.stringify(res.data.token));
+          localStorage.setItem("id", JSON.stringify(res.data.user.id));
+          localStorage.setItem("email", JSON.stringify(res.data.user.email));
+          localStorage.setItem("name", JSON.stringify(res.data.user.name));
           navigate("/");
           window.location.reload(false);
         })

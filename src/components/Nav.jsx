@@ -7,20 +7,21 @@ import UserContext from "../context/UserContext";
 
 export default function Nav() {
   const token = JSON.parse(localStorage.getItem("token"));
+  const user_id = JSON.parse(localStorage.getItem("id"));
+  const user_name = JSON.parse(localStorage.getItem("name"));
 
-  const { logout, user } = useContext(UserContext);
-  console.log(user);
+  const { logout } = useContext(UserContext);
 
   let renderUl = () => {
     if (token === null) {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-10'>
-          <li className='text-sm'>
-            <Link to='/register' className='flex'>
+          <li className='text-sm p-2 hover:border hover:border-black hover:bg-black hover:text-white'>
+            <Link to='/register' className='flex items-start'>
               Register &nbsp; <VscAccount />{" "}
             </Link>
           </li>
-          <li className='text-sm'>
+          <li className='text-sm p-2 hover:border hover:border-black hover:bg-black hover:text-white'>
             <Link to='/login' className='flex'>
               Log in &nbsp;
               <VscSignIn />
@@ -31,13 +32,13 @@ export default function Nav() {
     } else {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-10'>
-          <li className='text-sm'>
-            <Link to={"/account/" + user.id} className='flex'>
-              Account &nbsp;
+          <li className='text-sm p-2 hover:border hover:border-black hover:bg-black hover:text-white'>
+            <Link to={"/user/" + user_id} className='flex'>
+              {user_name} &nbsp;
               <VscAccount />
             </Link>
           </li>
-          <li className='text-sm'>
+          <li className='text-sm p-2 hover:border hover:border-black hover:bg-black hover:text-white'>
             <button onClick={logout} className='flex'>
               Log out &nbsp;
               <VscSignOut />
@@ -66,7 +67,7 @@ export default function Nav() {
         <ul className='flex-row'>
           <li className='mb-3'></li>
           <li className='mb-3'>
-            <Link to='/account'>Account</Link>
+            <Link to={"/user/" + user_id}>{user_name}</Link>
           </li>
           <li>
             <button onClick={logout}>Log out</button>
@@ -84,7 +85,7 @@ export default function Nav() {
   };
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth <= 768 && show === false) {
+    if (window.innerWidth <= 768 && show === true) {
       smallNav.style.display = "block";
     } else {
       smallNav.style.display = "none";

@@ -18,6 +18,9 @@ export function UserProvider({ children }) {
 
     let logout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        localStorage.removeItem("email");
+        localStorage.removeItem("name");
         window.location.reload(false);
     };
 
