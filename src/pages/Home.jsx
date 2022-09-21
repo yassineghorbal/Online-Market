@@ -43,25 +43,25 @@ export default function Home() {
       return (
         <div
           id='hero'
-          className='md:flex shadow-md items-center justify-center m-10'>
-          <div className='md:w-1/2 w-full md:ml-20 md:text-center text-left'>
+          className='md:flex shadow-md items-center justify-center m-10 border w-11/12 mx-auto md:py-7 py-0'>
+          <div className='md:text-center text-left'>
             <p className='md:text-2xl text-lg md:ml-0 ml-5 md:mt-0 mt-5'>
               Sell or Buy What ever You Like For Free
             </p>
             <div className='flex md:justify-center justify-start'>
               <Link to='/register'>
-                <button className='m-5 text-green-700 border border-green-700 p-5 hover:rounded-full hover:bg-green-700 hover:text-white'>
+                <button className='m-5 text-green-700 border border-green-700 p-3 md:p-5 hover:bg-green-700 hover:text-white'>
                   Create An Account
                 </button>
               </Link>
               <Link to='/login'>
-                <button className='m-5 text-green-700 border border-green-700 p-5 hover:rounded-full hover:bg-green-700 hover:text-white'>
+                <button className='m-5 text-green-700 border border-green-700 p-3 md:p-5 hover:bg-green-700 hover:text-white'>
                   Log In
                 </button>
               </Link>
             </div>
           </div>
-          <div id='img' className='w-1/2 mr-20 md:block hidden'>
+          <div id='img' className='w-1/2 md:block hidden'>
             <img src={hero_img} alt='hero' />
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function Home() {
                   placeholder='put a link to your hosted image here'
                 />
               </div>
-              <div className='mb-6'>
+              <div className='mb-6 hidden'>
                 <label className='inline-block text-lg mb-2'>Id</label>
                 <input
                   type='number'
@@ -148,6 +148,7 @@ export default function Home() {
       );
     }
   };
+
   return (
     <>
       {renderHero()}

@@ -53,11 +53,10 @@ export default function Nav() {
     if (token === null) {
       return (
         <ul className='flex-row'>
-          <li className='mb-3'></li>
-          <li className='mb-3'>
+          <li className='my-3'>
             <Link to='/register'>Register</Link>
           </li>
-          <li>
+          <li className='mb-3'>
             <Link to='/login'>Log in</Link>
           </li>
         </ul>
@@ -65,11 +64,10 @@ export default function Nav() {
     } else {
       return (
         <ul className='flex-row'>
-          <li className='mb-3'></li>
-          <li className='mb-3'>
+          <li className='my-3'>
             <Link to={"/user/" + user_id}>{user_name}</Link>
           </li>
-          <li>
+          <li className='mb-3'>
             <button onClick={logout}>Log out</button>
           </li>
         </ul>
@@ -79,6 +77,7 @@ export default function Nav() {
 
   let [show, setShow] = useState(true);
   let smallNav = document.getElementById("nav");
+
   let change = () => {
     setShow(!show);
     navDisplay();
@@ -105,9 +104,9 @@ export default function Nav() {
       <nav className='w-full flex justify-between items-center text-gray-900 p-5 h-14'>
         <Link to='/' className='text-2xl flex ml-0 md:ml-10'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
-          Online Market
+          <span className='md:block hidden'>Online Market</span>
         </Link>
-        <form className='hidden md:flex'>
+        <form className='flex'>
           <input className='border border-black p-2' placeholder='Search' />
           <button className='border border-black bg-white px-2 hover:bg-black hover:text-white'>
             Search
@@ -119,13 +118,8 @@ export default function Nav() {
         </button>
         <div
           id='nav'
-          className='md:hidden absolute border top-16 w-11/12 py-2 text-center bg-white shadow-lg'>
-          <form>
-            <input className='border border-black p-3' placeholder='Search' />
-            <button className='border border-black bg-white px-2 hover:bg-black hover:text-white p-3'>
-              Search
-            </button>
-          </form>
+          className='hidden absolute border top-16 w-11/12 py-2 text-center bg-white shadow-lg'
+          onClick={change}>
           {renderUlSmallNav()}
         </div>
       </nav>
