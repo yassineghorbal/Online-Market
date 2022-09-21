@@ -19,8 +19,10 @@ export default function Item({ item }) {
             </div>
           </div>
         </Link>
+        <hr className='my-2 w-full' />
         <div>
           <img className='m-2' src={item.src} alt={item.item_name} />
+          <hr className='my-2 w-full' />
           <p className='ml-3 mt-2 text-gray-700'>{item.item_name}</p>
           <p className='ml-3 mt-2 text-gray-700'>
             <strong>Price: </strong>${item.price}

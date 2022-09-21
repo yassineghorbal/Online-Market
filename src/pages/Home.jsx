@@ -24,6 +24,20 @@ export default function Home() {
     getItems();
   }, [getItems]);
 
+  const logged_in_hero = document.getElementById("logged_in_hero");
+  const create_form = document.getElementById("create_form");
+
+  const showForm = () => {
+    create_form.style.display = "block";
+    logged_in_hero.style.display = "none";
+  };
+
+  const showLoggedInHero = (e) => {
+    e.preventDefault();
+    create_form.style.display = "none";
+    logged_in_hero.style.display = "flex";
+  };
+
   const renderHero = () => {
     if (token === null) {
       return (
@@ -54,16 +68,83 @@ export default function Home() {
       );
     } else {
       return (
-        <div className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border flex items-center'>
-          <p className='text-lg text-green-700 m-5'>
-            You need to sell something ?
-          </p>
-          <Link to={"/user/" + user_id + "/create"}>
-            <button className='border border-black m-3 px-2 text-sm hover:border-green-700 hover:bg-green-700 hover:text-white py-2'>
+        <>
+          <div
+            id='logged_in_hero'
+            className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border flex items-center'>
+            <p className='text-lg text-green-700 m-5'>
+              You need to sell something ?
+            </p>
+            <button
+              onClick={showForm}
+              className='border border-black m-3 px-2 text-sm hover:border-green-700 hover:bg-green-700 hover:text-white py-2'>
               Start Now
             </button>
-          </Link>
-        </div>
+          </div>
+          <div
+            id='create_form'
+            className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border items-center hidden'>
+            <h1 className='text-lg text-green-700 m-5 p-3 text-center border border-green-700 w-2/3 mx-auto'>
+              Add an item to sell
+            </h1>
+            <form className='w-11/12 mx-auto'>
+              <div className='mb-6'>
+                <label className='inline-block text-lg mb-2'>Name</label>
+                <input
+                  type='text'
+                  className='border border-gray-200 p-2 w-full'
+                  name='name'
+                />
+              </div>
+              <div className='mb-6'>
+                <label className='inline-block text-lg mb-2'>Description</label>
+                <textarea
+                  className='border border-gray-200 p-2 w-full'
+                  name='description'
+                />
+              </div>
+              <div className='mb-6'>
+                <label className='inline-block text-lg mb-2'>Price</label>
+                <input
+                  type='number'
+                  className='border border-gray-200 p-2 w-full'
+                  name='price'
+                />
+              </div>
+              <div className='mb-6'>
+                <label className='inline-block text-lg mb-2'>Image</label>
+                <input
+                  type='url'
+                  className='border border-gray-200 p-2 w-full'
+                  name='src'
+                  placeholder='put a link to your hosted image here'
+                />
+              </div>
+              <div className='mb-6'>
+                <label className='inline-block text-lg mb-2'>Id</label>
+                <input
+                  type='number'
+                  className='border border-gray-200 p-2 w-full'
+                  name='user_id'
+                  value={user_id}
+                  readOnly
+                />
+              </div>
+              <div className='mb-6'>
+                <button
+                  type='submit'
+                  className='border border-slate-800 py-2 px-4 hover:bg-black hover:text-white'>
+                  Create
+                </button>
+                <button
+                  onClick={showLoggedInHero}
+                  className='ml-3 border border-green-700 text-green-700 py-2 px-4 hover:bg-green-700 hover:text-white'>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </>
       );
     }
   };

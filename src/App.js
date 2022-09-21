@@ -6,7 +6,6 @@ import Home from "./pages/Home";
 import Account from "./pages/Account";
 import { UserProvider } from './context/UserContext'
 import { ItemsProvider } from "./context/ItemsContext";
-import Create from "./pages/Create";
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path="/user/:id" element={<Account />} />
-            <Route path="/user/:id/create" element={<Create />} />
           </Routes>
         </Router>
       </ItemsProvider>
