@@ -21,7 +21,7 @@ export default function Item({ item }) {
           </div>
         </Link>
         <hr className='my-2 w-full' />
-        <Link className='hover:cursor-pointer' to={"item/" + item.id}>
+        <Link className='hover:cursor-pointer' to={"/item/" + item.id}>
           <div>
             <img className='mx-auto' src={item.src} alt={item.item_name} />
             <hr className='my-2 w-full' />

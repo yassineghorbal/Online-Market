@@ -65,7 +65,7 @@ export default function Nav() {
       return (
         <ul className='flex-row'>
           <li className='my-3'>
-            <Link to={"/user/" + user_id}>{user_name}</Link>
+            <Link to={"/profile"}>{user_name}</Link>
           </li>
           <li className='mb-3'>
             <button onClick={logout}>Log out</button>
@@ -103,7 +103,7 @@ export default function Nav() {
     <>
       <nav
         id='bigNav'
-        className='w-full flex justify-between items-center text-gray-900 p-5 h-14'>
+        className='w-full flex justify-between items-center text-gray-900 p-5 h-14 shadow'>
         <Link to='/' className='text-2xl flex ml-0 md:ml-10'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span className='md:block hidden'>Online Market</span>
