@@ -7,7 +7,6 @@ import UserContext from "../context/UserContext";
 
 export default function Nav() {
   const token = JSON.parse(localStorage.getItem("token"));
-  const user_id = JSON.parse(localStorage.getItem("id"));
   const user_name = JSON.parse(localStorage.getItem("name"));
 
   const { logout } = useContext(UserContext);
@@ -15,7 +14,7 @@ export default function Nav() {
   let renderUl = () => {
     if (token === null) {
       return (
-        <ul className='hidden md:flex space-x-6 text-lg mr-10'>
+        <ul className='hidden md:flex space-x-6 text-lg mr-0 lg:mr-10'>
           <li className='text-sm p-2 hover:bg-black hover:text-white'>
             <Link to='/register' className='flex items-start'>
               Register &nbsp; <VscAccount />{" "}
@@ -31,7 +30,7 @@ export default function Nav() {
       );
     } else {
       return (
-        <ul className='hidden md:flex space-x-6 text-lg mr-10'>
+        <ul className='hidden md:flex space-x-6 text-lg mr-0 lg:mr-10'>
           <li className='text-sm p-2 hover:bg-black hover:text-white'>
             <Link to={"/profile"} className='flex'>
               {user_name} &nbsp;
@@ -104,12 +103,15 @@ export default function Nav() {
       <nav
         id='bigNav'
         className='w-full flex justify-between items-center text-gray-900 p-5 h-14 shadow'>
-        <Link to='/' className='text-2xl flex ml-0 md:ml-10'>
+        <Link to='/' className='text-2xl flex ml-0 md:ml-5 lg:ml-10'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span className='md:block hidden'>Online Market</span>
         </Link>
-        <form className='flex'>
-          <input className='border border-black p-2' placeholder='Search' />
+        <form className='flex mx-2 md:mx-auto'>
+          <input
+            className='border border-black p-1 md:p-2'
+            placeholder='Search'
+          />
           <button className='border border-black bg-white px-2 hover:bg-black hover:text-white'>
             Search
           </button>

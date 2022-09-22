@@ -94,7 +94,7 @@ export default function Home() {
           <div
             id='logged_in_hero'
             className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border flex items-center'>
-            <p className='text-lg text-green-700 m-5'>
+            <p className='text-lg text-green-700 m-1 md:m-5'>
               You need to sell something ?
             </p>
             <button
