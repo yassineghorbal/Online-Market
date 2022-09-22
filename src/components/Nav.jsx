@@ -16,12 +16,12 @@ export default function Nav() {
     if (token === null) {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-10'>
-          <li className='text-sm p-2 hover:border hover:border-black hover:bg-black hover:text-white'>
+          <li className='text-sm p-2 hover:bg-black hover:text-white'>
             <Link to='/register' className='flex items-start'>
               Register &nbsp; <VscAccount />{" "}
             </Link>
           </li>
-          <li className='text-sm p-2 hover:border hover:border-black hover:bg-black hover:text-white'>
+          <li className='text-sm p-2 hover:bg-black hover:text-white'>
             <Link to='/login' className='flex'>
               Log in &nbsp;
               <VscSignIn />
@@ -32,13 +32,13 @@ export default function Nav() {
     } else {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-10'>
-          <li className='text-sm p-2 hover:border hover:border-black hover:bg-black hover:text-white'>
+          <li className='text-sm p-2 hover:bg-black hover:text-white'>
             <Link to={"/user/" + user_id} className='flex'>
               {user_name} &nbsp;
               <VscAccount />
             </Link>
           </li>
-          <li className='text-sm p-2 hover:border hover:border-black hover:bg-black hover:text-white'>
+          <li className='text-sm p-2 hover:bg-black hover:text-white'>
             <button onClick={logout} className='flex'>
               Log out &nbsp;
               <VscSignOut />
@@ -76,7 +76,7 @@ export default function Nav() {
   };
 
   let [show, setShow] = useState(true);
-  let smallNav = document.getElementById("nav");
+  const smallNav = document.getElementById("nav");
 
   let change = () => {
     setShow(!show);
@@ -101,7 +101,9 @@ export default function Nav() {
 
   return (
     <>
-      <nav className='w-full flex justify-between items-center text-gray-900 p-5 h-14'>
+      <nav
+        id='bigNav'
+        className='w-full flex justify-between items-center text-gray-900 p-5 h-14'>
         <Link to='/' className='text-2xl flex ml-0 md:ml-10'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span className='md:block hidden'>Online Market</span>

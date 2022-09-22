@@ -19,7 +19,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path="/user/:id" element={<Account />} />
-            <Route path='/user/:id/:id' element={<ShowItem />} />
+            <Route path='/item/:id' element={<ShowItem />} />
           </Routes>
         </Router>
       </ItemsProvider>
