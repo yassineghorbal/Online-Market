@@ -41,7 +41,6 @@ export default function Home() {
   let error_status;
   const createItem = (e) => {
     e.preventDefault();
-    console.log(itemData);
     axios
       .post("http://127.0.0.1:8000/api/items", itemData, {
         headers: {
@@ -94,7 +93,7 @@ export default function Home() {
         <>
           <div
             id='logged_in_hero'
-            className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border flex items-center'>
+            className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border flex items-center'>
             <p className='text-lg text-green-700 m-5'>
               You need to sell something ?
             </p>

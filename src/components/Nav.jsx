@@ -33,7 +33,7 @@ export default function Nav() {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-10'>
           <li className='text-sm p-2 hover:bg-black hover:text-white'>
-            <Link to={"/user/" + user_id} className='flex'>
+            <Link to={"/profile"} className='flex'>
               {user_name} &nbsp;
               <VscAccount />
             </Link>
