@@ -21,34 +21,34 @@ export default function Nav() {
     if (token === null) {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-0 lg:mr-10'>
-          <li className='text-sm p-2 hover:bg-black hover:text-white'>
-            <Link to='/register' className='flex items-start'>
-              Register &nbsp; <VscAccount />{" "}
-            </Link>
-          </li>
-          <li className='text-sm p-2 hover:bg-black hover:text-white'>
-            <Link to='/login' className='flex'>
+          <Link to='/register' className=''>
+            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
+              Register &nbsp; <VscAccount />
+            </li>
+          </Link>
+          <Link to='/login' className=''>
+            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
               Log in &nbsp;
               <VscSignIn />
-            </Link>
-          </li>
+            </li>
+          </Link>
         </ul>
       );
     } else {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-0 lg:mr-10'>
-          <li className='text-sm p-2 hover:bg-black hover:text-white'>
-            <Link to={"/profile"} className='flex'>
+          <Link to={"/profile"} className=''>
+            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
               {user_name} &nbsp;
               <VscAccount />
-            </Link>
-          </li>
-          <li className='text-sm p-2 hover:bg-black hover:text-white'>
-            <button onClick={logout} className='flex'>
+            </li>
+          </Link>
+          <button onClick={logout} className=''>
+            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
               Log out &nbsp;
               <VscSignOut />
-            </button>
-          </li>
+            </li>
+          </button>
         </ul>
       );
     }
