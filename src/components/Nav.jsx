@@ -4,6 +4,7 @@ import { VscAccount, VscSignIn, VscSignOut } from "react-icons/vsc";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
+import React from "react";
 
 export default function Nav() {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -75,7 +76,7 @@ export default function Nav() {
   };
 
   let [show, setShow] = useState(true);
-  const smallNav = document.getElementById("nav");
+  const smallNav = React.createRef();
 
   let change = () => {
     setShow(!show);
@@ -83,26 +84,24 @@ export default function Nav() {
   };
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth <= 768 && show === true) {
-      smallNav.style.display = "block";
+    if (window.innerWidth <= 768 && show === false) {
+      smallNav.current.style.display = "block";
     } else {
-      smallNav.style.display = "none";
+      smallNav.current.style.display = "none";
     }
   });
 
   let navDisplay = () => {
     if (show === true) {
-      smallNav.style.display = "block";
+      smallNav.current.style.display = "block";
     } else {
-      smallNav.style.display = "none";
+      smallNav.current.style.display = "none";
     }
   };
 
   return (
     <>
-      <nav
-        id='bigNav'
-        className='w-full flex justify-between items-center text-gray-900 p-5 h-14 shadow'>
+      <nav className='w-full flex justify-between items-center text-gray-900 p-5 h-14 shadow'>
         <Link to='/' className='text-2xl flex ml-0 md:ml-5 lg:ml-10'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span className='md:block hidden'>Online Market</span>
@@ -121,8 +120,8 @@ export default function Nav() {
           <GiHamburgerMenu className='text-lg' />
         </button>
         <div
-          id='nav'
-          className='hidden absolute border top-16 w-11/12 py-2 text-center bg-white shadow-lg'
+          ref={smallNav}
+          className='hidden md:hidden absolute border top-16 w-11/12 py-2 text-center bg-white shadow-lg'
           onClick={change}>
           {renderUlSmallNav()}
         </div>

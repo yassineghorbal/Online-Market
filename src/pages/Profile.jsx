@@ -97,7 +97,7 @@ export default function Profile() {
           </p>
           <div
             id='user_info'
-            className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border flex items-center shadow-md relative'>
+            className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border items-center shadow-md relative block'>
             <ul className='m-10'>
               <li className='my-3'>
                 Name:&nbsp;
