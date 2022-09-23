@@ -1,7 +1,12 @@
 import logo from "../assets/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { VscAccount, VscSignIn, VscSignOut } from "react-icons/vsc";
-import { useState, useContext } from "react";
+import {
+  VscAccount,
+  VscSignIn,
+  VscSignOut,
+  VscChromeClose,
+} from "react-icons/vsc";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import React from "react";
@@ -75,28 +80,32 @@ export default function Nav() {
     }
   };
 
-  let [show, setShow] = useState(true);
   const smallNav = React.createRef();
+  const showBtn = React.createRef();
+  const hideBtn = React.createRef();
 
-  let change = () => {
-    setShow(!show);
-    navDisplay();
+  window.onresize = () => {
+    if (window.innerWidth < 768) {
+      smallNav.current.style.display = "none";
+      showBtn.current.style.display = "block";
+      hideBtn.current.style.display = "none";
+    } else {
+      smallNav.current.style.display = "none";
+      hideBtn.current.style.display = "none";
+      showBtn.current.style.display = "none";
+    }
   };
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth <= 768 && show === false) {
-      smallNav.current.style.display = "block";
-    } else {
-      smallNav.current.style.display = "none";
-    }
-  });
+  const showNav = () => {
+    smallNav.current.style.display = "block";
+    showBtn.current.style.display = "none";
+    hideBtn.current.style.display = "block";
+  };
 
-  let navDisplay = () => {
-    if (show === true) {
-      smallNav.current.style.display = "block";
-    } else {
-      smallNav.current.style.display = "none";
-    }
+  const hideNav = () => {
+    smallNav.current.style.display = "none";
+    hideBtn.current.style.display = "none";
+    showBtn.current.style.display = "block";
   };
 
   return (
@@ -116,13 +125,24 @@ export default function Nav() {
           </button>
         </form>
         {renderUl()}
-        <button className='md:hidden block' id='toggle' onClick={change}>
+        <button
+          ref={showBtn}
+          className='md:hidden block'
+          id='toggle'
+          onClick={showNav}>
           <GiHamburgerMenu className='text-lg' />
+        </button>
+        <button
+          ref={hideBtn}
+          className='md:hidden hidden'
+          id='toggle'
+          onClick={hideNav}>
+          <VscChromeClose className='text-lg' />
         </button>
         <div
           ref={smallNav}
           className='hidden md:hidden absolute border top-16 w-11/12 py-2 text-center bg-white shadow-lg'
-          onClick={change}>
+          onClick={hideNav}>
           {renderUlSmallNav()}
         </div>
       </nav>
