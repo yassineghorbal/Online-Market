@@ -59,10 +59,14 @@ export default function Nav() {
       return (
         <ul className='flex-row'>
           <li className='my-3'>
-            <Link to='/register'>Register</Link>
+            <Link to='/register' className='hover:border'>
+              Register
+            </Link>
           </li>
           <li className='mb-3'>
-            <Link to='/login'>Log in</Link>
+            <Link className='hover:border' to='/login'>
+              Log in
+            </Link>
           </li>
         </ul>
       );
@@ -70,10 +74,14 @@ export default function Nav() {
       return (
         <ul className='flex-row'>
           <li className='my-3'>
-            <Link to={"/profile"}>{user_name}</Link>
+            <Link to={"/profile"} className='hover:border'>
+              {user_name}
+            </Link>
           </li>
           <li className='mb-3'>
-            <button onClick={logout}>Log out</button>
+            <button className='hover:border' onClick={logout}>
+              Log out
+            </button>
           </li>
         </ul>
       );
@@ -141,7 +149,7 @@ export default function Nav() {
         </button>
         <div
           ref={smallNav}
-          className='hidden md:hidden absolute border top-16 w-11/12 py-2 text-center bg-white shadow-lg'
+          className='hidden md:hidden absolute border top-14 w-11/12 py-2 text-center bg-white shadow-lg'
           onClick={hideNav}>
           {renderUlSmallNav()}
         </div>

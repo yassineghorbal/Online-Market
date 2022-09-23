@@ -68,7 +68,7 @@ export default function Home() {
           className='md:flex shadow-md items-center justify-center m-10 border w-11/12 mx-auto md:py-7 py-0'>
           <div className='md:text-center text-left'>
             <p className='md:text-2xl text-lg md:ml-0 ml-5 md:mt-0 mt-5'>
-              Sell or Buy What ever You Like For Free
+              Post Ads For What ever You Need To Sell For Free
             </p>
             <div className='flex md:justify-center justify-start'>
               <Link to='/register'>
@@ -93,8 +93,8 @@ export default function Home() {
         <>
           <div
             id='logged_in_hero'
-            className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border flex items-center'>
-            <p className='text-lg text-green-700 m-1 md:m-5'>
+            className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border block md:flex items-center'>
+            <p className='text-lg text-green-700 m-3 md:m-5'>
               You need to sell something ?
             </p>
             <button
