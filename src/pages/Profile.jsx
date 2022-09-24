@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { FiEdit2 } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
+import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import Item from "../components/Item";
 
 export default function Profile() {
@@ -106,16 +106,39 @@ export default function Profile() {
     getUserItems();
   }, [getUserItems]);
 
+  // delete user
+  let navigate = useNavigate();
+
+  const deleteUser = () => {
+    axios
+      .delete(`http://127.0.0.1:8000/api/user/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        localStorage.removeItem("name");
+        navigate("/");
+        window.location.reload(false);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
   const renderUserItems = () => {
     if (items.current.length === 0) {
       return <p className='text-center m-10 text-red-500'>No Posts Yet</p>;
     } else {
       return (
         <>
-          <p className='mx-auto text-center text-xl text-green-700 p-5 w-11/12 md:w-1/2 border'>
+          <p className='mx-auto text-center text-xl text-green-700 p-5 w-11/12 md:w-1/2 border mt-10'>
             Your Posts
           </p>
-          <div className='mt-10'>
+          <div className='mt-5'>
             <ul>
               {items.current.map((item) => (
                 <Item key={item.id} item={item} />
@@ -166,10 +189,42 @@ export default function Profile() {
             </ul>
             <button
               onClick={showEditForm}
-              className='m-5 border text-black p-3 hover:text-white hover:bg-green-700 absolute bottom-2 right-2 flex items-center'>
+              className='m-5 border text-black p-3 hover:text-white hover:bg-green-700 absolute bottom-2 right-28 flex items-center'>
               <FiEdit2 />
               &nbsp;Edit
             </button>
+            <button
+              onClick={() => {
+                document.getElementById("delete_confirm").style.display =
+                  "block";
+              }}
+              className='m-5 border text-red-500 p-3 hover:text-white hover:bg-red-500 absolute bottom-2 right-2 flex items-center'>
+              <FiTrash2 />
+              &nbsp;Delete
+            </button>
+          </div>
+          <div
+            id='delete_confirm'
+            className='w-11/12 md:w-1/2 lg:w-1/3 border border-red-700 bg-red-400 rounded p-3 mx-auto hidden'>
+            <p className='text-white ml-5 text-lg'>
+              Are you sure? All your posts will be deleted.
+            </p>
+            <div className='flex w-full justify-end'>
+              <button
+                onClick={() => {
+                  document.getElementById("delete_confirm").style.display =
+                    "none";
+                }}
+                className='m-2 border border-black text-black bg-white p-3 hover:text-white hover:bg-black hover:border-white flex items-center'>
+                Cancel
+              </button>
+              <button
+                onClick={deleteUser}
+                className='m-2 border text-white bg-red-500 p-3 hover:text-red-500 hover:bg-white hover:border-red-500 flex items-center'>
+                <FiTrash2 />
+                &nbsp;Delete
+              </button>
+            </div>
           </div>
           <div
             id='edit_info_form'

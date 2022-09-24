@@ -28,10 +28,10 @@ export default function ShowItem() {
       {item.current.map((item) => (
         <div
           key={item.id}
-          className='w-11/12 md:w-3/4 mx-auto my-3 shadow-md p-3 border'>
+          className='w-11/12 md:w-3/4 mx-auto my-3 shadow-md border'>
           <img src={item.src} alt={item.name} className='mb-5 mx-auto' />
           <div className='block md:flex'>
-            <div className='w-100 md:w-1/2 border p-2'>
+            <div className='w-100 md:w-1/2 border p-2 md:mx-2 m-2'>
               <Link to={"/user/" + item.user_id}>
                 <div className='flex'>
                   <span className='border border-green-400 rounded-full p-3 text-xl'>
@@ -58,7 +58,7 @@ export default function ShowItem() {
                 </p>
               </div>
             </div>
-            <div className='w-100 md:w-1/2 p-5 border'>
+            <div className='w-100 md:w-1/2 p-5 border md:mx-2 m-2'>
               <p className='text-2xl mb-3'>{item.item_name}</p>
               <p>
                 <span className='text-green-700'>Price: </span>
