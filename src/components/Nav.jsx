@@ -123,6 +123,11 @@ export default function Nav() {
     if (currentlocation !== location) {
       setCurrentLocation(location);
       hideNav();
+      if (window.innerWidth < 768) {
+        showBtn.current.style.display = "block";
+      } else {
+        showBtn.current.style.display = "none";
+      }
     }
   }, [location, currentlocation, hideNav, showBtn]);
 
