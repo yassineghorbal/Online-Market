@@ -134,7 +134,9 @@ export default function Nav() {
   return (
     <>
       <nav className='w-full flex justify-between items-center text-gray-900 p-5 h-14 shadow'>
-        <Link to='/' className='text-2xl flex ml-0 md:ml-5 lg:ml-28'>
+        <Link
+          to='/'
+          className='text-2xl flex ml-0 md:ml-5 lg:ml-28 hover:translate-x-1'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span className='md:block hidden'>Online Market</span>
         </Link>

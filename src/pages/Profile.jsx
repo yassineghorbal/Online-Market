@@ -64,6 +64,7 @@ export default function Profile() {
       })
       .then((res) => {
         console.log(res);
+        localStorage.setItem("name", JSON.stringify(res.data.name));
         window.location.reload(false);
       })
       .catch((e) => {
