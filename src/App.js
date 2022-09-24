@@ -8,6 +8,7 @@ import { UserProvider } from './context/UserContext'
 import { ItemsProvider } from "./context/ItemsContext";
 import ShowItem from "./pages/ShowItem";
 import Profile from './pages/Profile'
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/user/:id" element={<Account />} />
             <Route path='/item/:id' element={<ShowItem />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </Router>
       </ItemsProvider>

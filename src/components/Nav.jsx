@@ -36,7 +36,7 @@ export default function Nav() {
       );
     } else {
       return (
-        <ul className='hidden md:flex space-x-6 text-lg mr-0 lg:mr-10'>
+        <ul className='hidden md:flex space-x-6 text-lg mr-0 lg:mr-28'>
           <Link to={"/profile"} className=''>
             <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
               {user_name} &nbsp;
@@ -119,7 +119,7 @@ export default function Nav() {
   return (
     <>
       <nav className='w-full flex justify-between items-center text-gray-900 p-5 h-14 shadow'>
-        <Link to='/' className='text-2xl flex ml-0 md:ml-5 lg:ml-10'>
+        <Link to='/' className='text-2xl flex ml-0 md:ml-5 lg:ml-28'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span className='md:block hidden'>Online Market</span>
         </Link>
