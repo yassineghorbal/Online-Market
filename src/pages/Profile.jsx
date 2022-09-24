@@ -27,29 +27,40 @@ export default function Profile() {
   const user_info = document.getElementById("user_info");
   const edit_info_form = document.getElementById("edit_info_form");
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  let updateProfileData = {
+    name,
+    email,
+    phone,
+  };
+
+  const profileChange = (e) => {
+    const newProfile = { ...updateProfileData };
+    newProfile[e.target.name] = e.target.value;
+    setName(newProfile.name);
+    setEmail(newProfile.email);
+    setPhone(newProfile.phone);
+    console.log(newProfile);
+  };
+
+  console.log(updateProfileData);
+  console.log(profile.current);
+
   const showEditForm = () => {
     user_info.style.display = "none";
     edit_info_form.style.display = "block";
+    setName(profile.current.name);
+    setEmail(profile.current.email);
+    setPhone(profile.current.phone);
   };
+
   const hideEditForm = (e) => {
     e.preventDefault();
     user_info.style.display = "block";
     edit_info_form.style.display = "none";
-  };
-
-  const [updateProfileData, setUpdateProileData] = useState({});
-
-  const updateProfileChange = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    setUpdateProileData((updateProfileData) => {
-      const newUpdateProfileData = {
-        ...updateProfileData,
-        [name]: value,
-      };
-      console.log(newUpdateProfileData);
-      return newUpdateProfileData;
-    });
   };
 
   const error_422 = document.getElementById("error_422");
@@ -136,25 +147,28 @@ export default function Profile() {
                   type='text'
                   className='border border-gray-200 p-2 w-full'
                   name='name'
-                  onChange={(e) => updateProfileChange(e)}
+                  defaultValue={profile.current.name}
+                  onChange={(e) => profileChange(e)}
                 />
               </div>
               <div className='mb-6'>
                 <label className='inline-block text-lg mb-2'>Email</label>
                 <input
-                  type='text'
+                  type='email'
                   className='border border-gray-200 p-2 w-full'
                   name='email'
-                  onChange={(e) => updateProfileChange(e)}
+                  defaultValue={profile.current.email}
+                  onChange={(e) => profileChange(e)}
                 />
               </div>
               <div className='mb-6'>
                 <label className='inline-block text-lg mb-2'>Phone</label>
                 <input
-                  type='text'
+                  type='phone'
                   className='border border-gray-200 p-2 w-full'
                   name='phone'
-                  onChange={(e) => updateProfileChange(e)}
+                  defaultValue={profile.current.phone}
+                  onChange={(e) => profileChange(e)}
                 />
               </div>
               <div className='mb-6'>
@@ -174,6 +188,7 @@ export default function Profile() {
           <p className='mx-auto text-center text-xl text-green-700 p-5 w-11/12 md:w-1/2 border'>
             Your Posts
           </p>
+          <p className='text-center m-5 text-red-500'>No Posts Yet</p>
         </>
       );
     }
