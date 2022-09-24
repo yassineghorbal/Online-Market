@@ -6,8 +6,8 @@ import {
   VscSignOut,
   VscChromeClose,
 } from "react-icons/vsc";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import React from "react";
 
@@ -110,11 +110,21 @@ export default function Nav() {
     hideBtn.current.style.display = "block";
   };
 
-  const hideNav = () => {
+  const hideNav = useCallback(() => {
     smallNav.current.style.display = "none";
     hideBtn.current.style.display = "none";
     showBtn.current.style.display = "block";
-  };
+  }, [hideBtn, showBtn, smallNav]);
+
+  let location = useLocation();
+
+  let [currentlocation, setCurrentLocation] = useState(location);
+  useEffect(() => {
+    if (currentlocation !== location) {
+      setCurrentLocation(location);
+      hideNav();
+    }
+  }, [location, currentlocation, hideNav, showBtn]);
 
   return (
     <>
@@ -127,6 +137,7 @@ export default function Nav() {
           <input
             className='border border-black p-1 md:p-2'
             placeholder='Search'
+            name='search'
           />
           <button className='border border-black bg-white px-2 hover:bg-black hover:text-white'>
             Search
@@ -149,8 +160,7 @@ export default function Nav() {
         </button>
         <div
           ref={smallNav}
-          className='hidden md:hidden absolute border top-14 w-11/12 py-2 text-center bg-white shadow-lg'
-          onClick={hideNav}>
+          className='hidden md:hidden absolute border top-14 w-11/12 py-2 text-center bg-white shadow-lg'>
           {renderUlSmallNav()}
         </div>
       </nav>
