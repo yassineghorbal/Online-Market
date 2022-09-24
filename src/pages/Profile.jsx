@@ -1,7 +1,8 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FiEdit2 } from "react-icons/fi";
+import Item from "../components/Item";
 
 export default function Profile() {
   // show user info
@@ -11,7 +12,7 @@ export default function Profile() {
   const user_id = JSON.parse(localStorage.getItem("id"));
   const token = JSON.parse(localStorage.getItem("token"));
 
-  const getUserItems = useCallback(() => {
+  const getUserInfo = useCallback(() => {
     axios.get(`http://127.0.0.1:8000/api/user/${user_id}`).then((res) => {
       profile.current = res.data;
       setProfile(profile.current);
@@ -20,8 +21,8 @@ export default function Profile() {
   }, [profile, setProfile, user_id]);
 
   useEffect(() => {
-    getUserItems();
-  }, [getUserItems]);
+    getUserInfo();
+  }, [getUserInfo]);
 
   // edit user info
   const user_info = document.getElementById("user_info");
@@ -85,6 +86,45 @@ export default function Profile() {
           error_422.style.display = "block";
         }
       });
+  };
+
+  // user items
+  let [items, setItems] = useState([]);
+  items = useRef([]);
+
+  const id = JSON.parse(localStorage.getItem("id"));
+
+  const getUserItems = useCallback(() => {
+    axios.get(`http://127.0.0.1:8000/api/items/user/${id}`).then((res) => {
+      items.current = res.data;
+      setItems(items.current);
+      console.log(items.current);
+    });
+  }, [items, setItems, id]);
+
+  useEffect(() => {
+    getUserItems();
+  }, [getUserItems]);
+
+  const renderUserItems = () => {
+    if (items.current.length === 0) {
+      return <p className='text-center m-10 text-red-500'>No Posts Yet</p>;
+    } else {
+      return (
+        <>
+          <p className='mx-auto text-center text-xl text-green-700 p-5 w-11/12 md:w-1/2 border'>
+            Your Posts
+          </p>
+          <div className='mt-10'>
+            <ul>
+              {items.current.map((item) => (
+                <Item key={item.id} item={item} />
+              ))}
+            </ul>
+          </div>
+        </>
+      );
+    }
   };
 
   const renderUserInfo = () => {
@@ -185,10 +225,6 @@ export default function Profile() {
               </div>
             </form>
           </div>
-          <p className='mx-auto text-center text-xl text-green-700 p-5 w-11/12 md:w-1/2 border'>
-            Your Posts
-          </p>
-          <p className='text-center m-5 text-red-500'>No Posts Yet</p>
         </>
       );
     }
@@ -197,6 +233,7 @@ export default function Profile() {
   return (
     <>
       <div className='mt-10'>{renderUserInfo()}</div>
+      {renderUserItems()}
     </>
   );
 }

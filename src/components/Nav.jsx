@@ -59,12 +59,12 @@ export default function Nav() {
       return (
         <ul className='flex-row'>
           <li className='my-3'>
-            <Link to='/register' className='hover:border'>
+            <Link to='/register' className='hover:border p-3'>
               Register
             </Link>
           </li>
-          <li className='mb-3'>
-            <Link className='hover:border' to='/login'>
+          <li className='my-5'>
+            <Link className='hover:border p-3' to='/login'>
               Log in
             </Link>
           </li>
@@ -74,12 +74,12 @@ export default function Nav() {
       return (
         <ul className='flex-row'>
           <li className='my-3'>
-            <Link to={"/profile"} className='hover:border'>
+            <Link to={"/profile"} className='hover:border p-3'>
               {user_name}
             </Link>
           </li>
           <li className='mb-3'>
-            <button className='hover:border' onClick={logout}>
+            <button className='hover:border p-3' onClick={logout}>
               Log out
             </button>
           </li>
