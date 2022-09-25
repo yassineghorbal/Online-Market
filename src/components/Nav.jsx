@@ -11,7 +11,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import React from "react";
-import axios from "axios";
+import ItemsContext from "../context/ItemsContext";
 
 export default function Nav() {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -135,28 +135,7 @@ export default function Nav() {
 
   // search
 
-  const [search, setSearch] = useState("");
-  const navigate = useNavigate();
-
-  const searchChange = (e) => {
-    setSearch(e.target.value);
-    console.log(search);
-  };
-
-  const searchResult = (e) => {
-    e.preventDefault();
-    axios
-      .get(`http://127.0.0.1:8000/api/items/search/${search}`)
-      .then((res) => {
-        let result = res.data;
-        navigate("/search");
-        console.log(result);
-      })
-      .catch((e) => {
-        navigate("/search");
-        console.log(e);
-      });
-  };
+  const { searchChange, searchResult } = useContext(ItemsContext);
 
   return (
     <>
