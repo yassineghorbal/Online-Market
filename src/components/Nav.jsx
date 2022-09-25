@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { BiSearchAlt } from "react-icons/bi";
 import {
   VscAccount,
   VscSignIn,
@@ -7,9 +8,10 @@ import {
   VscChromeClose,
 } from "react-icons/vsc";
 import { useCallback, useContext, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import React from "react";
+import axios from "axios";
 
 export default function Nav() {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -131,6 +133,31 @@ export default function Nav() {
     }
   }, [location, currentlocation, hideNav, showBtn]);
 
+  // search
+
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const searchChange = (e) => {
+    setSearch(e.target.value);
+    console.log(search);
+  };
+
+  const searchResult = (e) => {
+    e.preventDefault();
+    axios
+      .get(`http://127.0.0.1:8000/api/items/search/${search}`)
+      .then((res) => {
+        let result = res.data;
+        navigate("/search");
+        console.log(result);
+      })
+      .catch((e) => {
+        navigate("/search");
+        console.log(e);
+      });
+  };
+
   return (
     <>
       <nav className='w-full flex justify-between items-center text-gray-900 p-5 h-14 shadow'>
@@ -140,14 +167,14 @@ export default function Nav() {
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span className='md:block hidden'>Online Market</span>
         </Link>
-        <form className='flex mx-2 md:mx-auto'>
+        <form onSubmit={searchResult} className='flex mx-2 md:mx-auto'>
           <input
             className='border border-black p-1 md:p-2'
             placeholder='Search'
-            name='search'
+            onChange={searchChange}
           />
-          <button className='border border-black bg-white px-2 hover:bg-black hover:text-white'>
-            Search
+          <button className='border border-black bg-white px-3 hover:bg-black hover:text-white'>
+            <BiSearchAlt className='text-xl' />
           </button>
         </form>
         {renderUl()}
