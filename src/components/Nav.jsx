@@ -11,7 +11,6 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import React from "react";
-import ItemsContext from "../context/ItemsContext";
 
 export default function Nav() {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -23,12 +22,18 @@ export default function Nav() {
     if (token === null) {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-0 lg:mr-10'>
-          <Link to='/register' className=''>
+          <Link to={"/search"}>
+            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
+              Search &nbsp;
+              <BiSearchAlt />
+            </li>
+          </Link>
+          <Link to='/register'>
             <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
               Register &nbsp; <VscAccount />
             </li>
           </Link>
-          <Link to='/login' className=''>
+          <Link to='/login'>
             <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
               Log in &nbsp;
               <VscSignIn />
@@ -39,13 +44,19 @@ export default function Nav() {
     } else {
       return (
         <ul className='hidden md:flex space-x-6 text-lg mr-0 lg:mr-28'>
-          <Link to={"/profile"} className=''>
+          <Link to={"/search"}>
+            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
+              Search &nbsp;
+              <BiSearchAlt />
+            </li>
+          </Link>
+          <Link to={"/profile"}>
             <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
               {user_name} &nbsp;
               <VscAccount />
             </li>
           </Link>
-          <button onClick={logout} className=''>
+          <button onClick={logout}>
             <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
               Log out &nbsp;
               <VscSignOut />
@@ -61,6 +72,11 @@ export default function Nav() {
       return (
         <ul className='flex-row'>
           <li className='my-3'>
+            <Link to='/search' className='hover:border p-3'>
+              Search
+            </Link>
+          </li>
+          <li className='my-5'>
             <Link to='/register' className='hover:border p-3'>
               Register
             </Link>
@@ -76,6 +92,11 @@ export default function Nav() {
       return (
         <ul className='flex-row'>
           <li className='my-3'>
+            <Link to='/search' className='hover:border p-3'>
+              Search
+            </Link>
+          </li>
+          <li className='my-5'>
             <Link to={"/profile"} className='hover:border p-3'>
               {user_name}
             </Link>
@@ -133,10 +154,6 @@ export default function Nav() {
     }
   }, [location, currentlocation, hideNav, showBtn]);
 
-  // search
-
-  const { searchChange, searchResult } = useContext(ItemsContext);
-
   return (
     <>
       <nav className='w-full flex justify-between items-center text-gray-900 p-5 h-14 shadow'>
@@ -144,18 +161,9 @@ export default function Nav() {
           to='/'
           className='text-2xl flex ml-0 md:ml-5 lg:ml-28 hover:translate-x-1'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
-          <span className='md:block hidden'>Online Market</span>
+          <span>Online Market</span>
         </Link>
-        <form onSubmit={searchResult} className='flex mx-2 md:mx-auto'>
-          <input
-            className='border border-black p-1 md:p-2'
-            placeholder='Search'
-            onChange={searchChange}
-          />
-          <button className='border border-black bg-white px-3 hover:bg-black hover:text-white'>
-            <BiSearchAlt className='text-xl' />
-          </button>
-        </form>
+
         {renderUl()}
         <button
           ref={showBtn}
