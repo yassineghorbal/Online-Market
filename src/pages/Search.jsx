@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BiSearchAlt } from "react-icons/bi";
 import axios from "axios";
 import Item from "../components/Item";
 
@@ -9,7 +8,6 @@ export default function Search() {
 
   const searchChange = (e) => {
     setSearch(e.target.value);
-    console.log(search);
   };
 
   const formSbmit = (e) => {
@@ -38,7 +36,7 @@ export default function Search() {
       <form
         onSubmit={formSbmit}
         onChange={searchResult}
-        className='w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-3 shadow-md p-3'>
+        className='w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-3 border'>
         <input
           className='border border-black p-1 md:p-2 w-full'
           placeholder='Search for items'

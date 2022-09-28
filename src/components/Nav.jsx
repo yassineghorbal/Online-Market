@@ -8,7 +8,7 @@ import {
   VscChromeClose,
 } from "react-icons/vsc";
 import { useCallback, useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import React from "react";
 
@@ -21,7 +21,7 @@ export default function Nav() {
   let renderUl = () => {
     if (token === null) {
       return (
-        <ul className='hidden md:flex space-x-6 text-lg mr-0 lg:mr-10'>
+        <ul className='hidden md:flex space-x-6 text-lg'>
           <Link to={"/search"}>
             <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
               Search &nbsp;
@@ -43,7 +43,7 @@ export default function Nav() {
       );
     } else {
       return (
-        <ul className='hidden md:flex space-x-6 text-lg mr-0 lg:mr-28'>
+        <ul className='hidden md:flex space-x-6 text-lg'>
           <Link to={"/search"}>
             <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
               Search &nbsp;
@@ -156,10 +156,8 @@ export default function Nav() {
 
   return (
     <>
-      <nav className='w-full flex justify-between items-center text-gray-900 p-5 h-14 shadow'>
-        <Link
-          to='/'
-          className='text-2xl flex ml-0 md:ml-5 lg:ml-28 hover:translate-x-1'>
+      <nav className='w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto flex justify-between items-center text-gray-900 p-5 h-14 shadow'>
+        <Link to='/' className='text-2xl flex ml-0 md:ml-5 hover:translate-x-1'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span>Online Market</span>
         </Link>
