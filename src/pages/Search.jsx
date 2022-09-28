@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import Item from "../components/Item";
+import SearchItem from "../components/SearchItem";
 
 export default function Search() {
   const [search, setSearch] = useState("");
@@ -49,7 +49,7 @@ export default function Search() {
         </p>
         <ul>
           {result.map((item) => (
-            <Item key={item.id} item={item} />
+            <SearchItem key={item.id} item={item} />
           ))}
         </ul>
       </div>
