@@ -23,18 +23,18 @@ export default function Nav() {
       return (
         <ul className='hidden md:flex space-x-6 text-lg'>
           <Link to={"/search"}>
-            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
+            <li className='text-sm p-2 hover:bg-green-700 hover:text-white flex items-center'>
               Search &nbsp;
               <BiSearchAlt />
             </li>
           </Link>
           <Link to='/register'>
-            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
+            <li className='text-sm p-2 hover:bg-green-700 hover:text-white flex items-center'>
               Register &nbsp; <VscAccount />
             </li>
           </Link>
           <Link to='/login'>
-            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
+            <li className='text-sm p-2 hover:bg-green-700 hover:text-white flex items-center'>
               Log in &nbsp;
               <VscSignIn />
             </li>
@@ -45,19 +45,19 @@ export default function Nav() {
       return (
         <ul className='hidden md:flex space-x-6 text-lg'>
           <Link to={"/search"}>
-            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
+            <li className='text-sm p-2 hover:bg-green-700 hover:text-white flex items-center'>
               Search &nbsp;
               <BiSearchAlt />
             </li>
           </Link>
           <Link to={"/profile"}>
-            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
+            <li className='text-sm p-2 hover:bg-green-700 hover:text-white flex items-center'>
               {user_name} &nbsp;
               <VscAccount />
             </li>
           </Link>
           <button onClick={logout}>
-            <li className='text-sm p-2 hover:bg-black hover:text-white flex items-center'>
+            <li className='text-sm p-2 hover:bg-green-700 hover:text-white flex items-center'>
               Log out &nbsp;
               <VscSignOut />
             </li>
