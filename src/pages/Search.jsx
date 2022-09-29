@@ -20,14 +20,12 @@ export default function Search() {
       .then((res) => {
         setResult(res.data);
         document.getElementById("error_404").style.display = "none";
-        console.log(result);
       })
       .catch((e) => {
         if (e.response.status === 404) {
           document.getElementById("error_404").style.display = "block";
           setResult([]);
         }
-        console.log(e);
       });
   };
 

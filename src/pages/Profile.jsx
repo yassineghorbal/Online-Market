@@ -16,7 +16,9 @@ export default function Profile() {
     axios.get(`http://127.0.0.1:8000/api/user/${user_id}`).then((res) => {
       profile.current = res.data;
       setProfile(profile.current);
-      console.log(profile.current);
+      setName(profile.current.name);
+      setEmail(profile.current.email);
+      setPhone(profile.current.phone);
     });
   }, [profile, setProfile, user_id]);
 
@@ -44,18 +46,11 @@ export default function Profile() {
     setName(newProfile.name);
     setEmail(newProfile.email);
     setPhone(newProfile.phone);
-    console.log(newProfile);
   };
-
-  console.log(updateProfileData);
-  console.log(profile.current);
 
   const showEditForm = () => {
     user_info.style.display = "none";
     edit_info_form.style.display = "block";
-    setName(profile.current.name);
-    setEmail(profile.current.email);
-    setPhone(profile.current.phone);
   };
 
   const hideEditForm = (e) => {
@@ -80,7 +75,7 @@ export default function Profile() {
         window.location.reload(false);
       })
       .catch((e) => {
-        console.log(e.response);
+        console.log(e);
         error_status = e.response.status;
         if (error_status === 422) {
           error_422.style.display = "block";
@@ -98,7 +93,6 @@ export default function Profile() {
     axios.get(`http://127.0.0.1:8000/api/items/user/${id}`).then((res) => {
       items.current = res.data;
       setItems(items.current);
-      console.log(items.current);
     });
   }, [items, setItems, id]);
 
@@ -117,7 +111,6 @@ export default function Profile() {
         },
       })
       .then((res) => {
-        console.log(res);
         localStorage.removeItem("token");
         localStorage.removeItem("id");
         localStorage.removeItem("name");
