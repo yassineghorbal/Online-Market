@@ -1,7 +1,7 @@
 import { FaUserAlt } from "react-icons/fa";
 import * as moment from "moment";
 import { Link, useLocation } from "react-router-dom";
-import { FiTrash2 } from "react-icons/fi";
+import { FiTrash2, FiEdit2 } from "react-icons/fi";
 import React from "react";
 import { useCallback } from "react";
 import { useEffect } from "react";
@@ -10,6 +10,7 @@ import axios from "axios";
 export default function Item({ item }) {
   const token = JSON.parse(localStorage.getItem("token"));
 
+  // delete
   const deleteItem = () => {
     axios
       .delete(`http://127.0.0.1:8000/api/items/${item.id}`, {
@@ -29,17 +30,19 @@ export default function Item({ item }) {
 
   let location = useLocation();
   const deleteBtn = React.createRef();
-  const showDeleteBtn = useCallback(() => {
+  const editBtn = React.createRef();
+  const showBtns = useCallback(() => {
     if (location.pathname === "/profile") {
       deleteBtn.current.style.display = "flex";
+      editBtn.current.style.display = "flex";
     } else {
       return;
     }
-  }, [deleteBtn, location]);
+  }, [deleteBtn, editBtn, location]);
 
   useEffect(() => {
-    showDeleteBtn();
-  }, [showDeleteBtn]);
+    showBtns();
+  }, [showBtns]);
 
   return (
     <>
@@ -75,6 +78,12 @@ export default function Item({ item }) {
           onClick={deleteItem}>
           <FiTrash2 />
         </button>
+        <Link
+          to={`/item/${item.id}/edit`}
+          ref={editBtn}
+          className='hidden m-5 border text-green-500 p-3 hover:text-white hover:bg-green-500 absolute bottom-0.5 right-12 items-center'>
+          <FiEdit2 />
+        </Link>
       </div>
     </>
   );

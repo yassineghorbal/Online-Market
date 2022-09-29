@@ -10,6 +10,7 @@ import ShowItem from "./pages/ShowItem";
 import Profile from './pages/Profile'
 import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
+import EditItem from "./pages/EditItem";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path="/user/:id" element={<Account />} />
             <Route path='/item/:id' element={<ShowItem />} />
+            <Route path='/item/:id/edit' element={<EditItem />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/search' element={<Search />} />
             <Route path='*' element={<NotFound />} />
