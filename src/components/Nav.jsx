@@ -13,6 +13,7 @@ import UserContext from "../context/UserContext";
 import React from "react";
 import { MdDarkMode } from "react-icons/md";
 import { BsSun } from "react-icons/bs";
+import { BiUpArrowAlt } from "react-icons/bi";
 
 export default function Nav() {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -192,9 +193,38 @@ export default function Nav() {
     document.documentElement.classList.add("dark");
   };
 
+  // go back up button
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  const box = document.querySelector("#box");
+  const goUpBtn = document.querySelector("#goUpBtn");
+
+  document.addEventListener(
+    "scroll",
+    function () {
+      isInViewport(box)
+        ? (goUpBtn.style.display = "none")
+        : (goUpBtn.style.display = "block");
+    },
+    {
+      passive: true,
+    }
+  );
+
   return (
     <>
-      <nav className='w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto flex justify-between items-center p-5 h-14 shadow dark:border dark:border-[#272727]'>
+      <nav
+        id='box'
+        className='w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto flex justify-between items-center p-5 h-14 shadow dark:border dark:border-[#272727]'>
         <Link to='/' className='text-2xl flex ml-0 md:ml-5 hover:translate-x-1'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span>Online Market</span>
@@ -237,6 +267,14 @@ export default function Nav() {
           <BsSun />
         </button>
       </nav>
+      <button
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        id='goUpBtn'
+        className='hidden fixed z-50 bottom-3 right-3 bg-white text-3xl border rounded-full p-3 shadow-lg dark:bg-[#272727] dark:border-gray-700'>
+        <BiUpArrowAlt />
+      </button>
     </>
   );
 }

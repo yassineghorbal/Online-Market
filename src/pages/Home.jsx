@@ -4,7 +4,6 @@ import axios from "axios";
 import { useCallback, useContext, useEffect, useRef } from "react";
 import ItemsContext from "../context/ItemsContext";
 import Item from "../components/Item";
-import { BiUpArrowAlt } from "react-icons/bi";
 
 export default function Home() {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -66,7 +65,7 @@ export default function Home() {
       return (
         <div
           id='hero'
-          className='box md:flex shadow-md items-center justify-center m-10 border w-11/12 mx-auto md:py-7 py-0 dark:border-[#272727]'>
+          className='md:flex shadow-md items-center justify-center m-10 border w-11/12 mx-auto md:py-7 py-0 dark:border-[#272727]'>
           <div className='md:text-center text-left'>
             <p className='md:text-2xl text-lg md:ml-0 ml-5 md:mt-0 mt-5'>
               Post Ads For What ever You Need To Sell For Free
@@ -94,7 +93,7 @@ export default function Home() {
         <>
           <div
             id='logged_in_hero'
-            className='box justify-center w-11/12 md:w-1/2 mx-auto my-5 border block md:flex items-center dark:border-[#272727]'>
+            className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border block md:flex items-center dark:border-[#272727]'>
             <p className='text-lg text-green-700 m-3 md:m-5 dark:text-green-500'>
               You need to sell something ?
             </p>
@@ -169,33 +168,6 @@ export default function Home() {
     }
   };
 
-  // go back up button
-  function isInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-  }
-
-  const box = document.querySelector(".box");
-  const goUpBtn = document.querySelector("#goUpBtn");
-
-  document.addEventListener(
-    "scroll",
-    function () {
-      isInViewport(box)
-        ? (goUpBtn.style.display = "none")
-        : (goUpBtn.style.display = "block");
-    },
-    {
-      passive: true,
-    }
-  );
-
   return (
     <>
       {renderHero()}
@@ -206,14 +178,6 @@ export default function Home() {
           ))}
         </ul>
       </div>
-      <button
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
-        id='goUpBtn'
-        className='hidden fixed z-50 bottom-3 right-3 bg-white text-3xl border rounded-full p-3 shadow-lg dark:bg-[#272727] dark:border-gray-700'>
-        <BiUpArrowAlt />
-      </button>
     </>
   );
 }
