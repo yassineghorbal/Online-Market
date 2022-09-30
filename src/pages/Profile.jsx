@@ -128,7 +128,7 @@ export default function Profile() {
     } else {
       return (
         <>
-          <p className='mx-auto text-center text-xl text-green-700 p-5 w-11/12 md:w-1/2 border mt-10'>
+          <p className='mx-auto text-center text-xl text-green-700 p-5 w-11/12 md:w-1/2 border mt-10 dark:border-[#272727]'>
             Your Posts
           </p>
           <div className='mt-5'>
@@ -160,12 +160,12 @@ export default function Profile() {
     } else {
       return (
         <>
-          <p className='mx-auto text-center text-xl text-green-700 p-5 w-11/12 md:w-1/2 border'>
+          <p className='mx-auto text-center text-xl text-green-700 p-5 w-11/12 md:w-1/2 border dark:border-[#272727]'>
             Your Contact Informations
           </p>
           <div
             id='user_info'
-            className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border items-center shadow-md relative block'>
+            className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border items-center shadow-md relative block dark:border-[#272727]'>
             <ul className='m-10'>
               <li className='my-3'>
                 Name:&nbsp;
@@ -182,7 +182,7 @@ export default function Profile() {
             </ul>
             <button
               onClick={showEditForm}
-              className='m-5 border text-black p-3 hover:text-white hover:bg-green-700 absolute bottom-2 right-28 flex items-center'>
+              className='m-5 border p-3 hover:text-white hover:bg-green-700 absolute bottom-2 right-28 flex items-center dark:border-[#272727]'>
               <FiEdit2 />
               &nbsp;Edit
             </button>
@@ -191,7 +191,7 @@ export default function Profile() {
                 document.getElementById("delete_confirm").style.display =
                   "block";
               }}
-              className='m-5 border text-red-500 p-3 hover:text-white hover:bg-red-500 absolute bottom-2 right-2 flex items-center'>
+              className='m-5 border text-red-500 p-3 hover:text-white hover:bg-red-500 absolute bottom-2 right-2 flex items-center dark:border-[#272727]'>
               <FiTrash2 />
               &nbsp;Delete
             </button>
@@ -221,7 +221,7 @@ export default function Profile() {
           </div>
           <div
             id='edit_info_form'
-            className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border items-center hidden'>
+            className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border items-center hidden dark:border-[#272727]'>
             <h1 className='text-lg text-green-700 m-5 p-3 text-center border border-green-700 w-2/3 mx-auto'>
               Edit Your Contact Info
             </h1>
@@ -233,7 +233,7 @@ export default function Profile() {
                 <label className='inline-block text-lg mb-2'>Name</label>
                 <input
                   type='text'
-                  className='border border-gray-200 p-2 w-full'
+                  className='p-2 w-full bg-transparent border dark:border-[#272727]'
                   name='name'
                   defaultValue={profile.current.name}
                   onChange={(e) => profileChange(e)}
@@ -243,7 +243,7 @@ export default function Profile() {
                 <label className='inline-block text-lg mb-2'>Email</label>
                 <input
                   type='email'
-                  className='border border-gray-200 p-2 w-full'
+                  className='p-2 w-full bg-transparent border dark:border-[#272727]'
                   name='email'
                   defaultValue={profile.current.email}
                   onChange={(e) => profileChange(e)}
@@ -253,7 +253,7 @@ export default function Profile() {
                 <label className='inline-block text-lg mb-2'>Phone</label>
                 <input
                   type='phone'
-                  className='border border-gray-200 p-2 w-full'
+                  className='p-2 w-full bg-transparent border dark:border-[#272727]'
                   name='phone'
                   defaultValue={profile.current.phone}
                   onChange={(e) => profileChange(e)}

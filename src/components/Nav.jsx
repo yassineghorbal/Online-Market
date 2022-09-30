@@ -160,20 +160,34 @@ export default function Nav() {
   const darkMode = React.createRef();
   const lightMode = React.createRef();
 
+  const showDarkThemeBtn = () => {
+    lightMode.current.style.display = "none";
+    darkMode.current.style.display = "block";
+  };
+
+  const showLightThemeBtn = () => {
+    lightMode.current.style.display = "block";
+    darkMode.current.style.display = "none";
+  };
+
   useEffect(() => {
     if (localStorage.theme === "dark" || !("theme" in localStorage)) {
       document.documentElement.classList.add("dark");
+      showLightThemeBtn();
     } else {
       document.documentElement.classList.remove("dark");
+      showDarkThemeBtn();
     }
   });
 
   const toggleLightTheme = () => {
+    showDarkThemeBtn();
     localStorage.theme = "light";
     document.documentElement.classList.remove("dark");
   };
 
   const toggleDarkTheme = () => {
+    showLightThemeBtn();
     localStorage.theme = "dark";
     document.documentElement.classList.add("dark");
   };
@@ -210,8 +224,6 @@ export default function Nav() {
           ref={darkMode}
           className='text-3xl fixed z-50 bottom-20 right-3 bg-white border rounded-full p-3 shadow-lg dark:bg-[#272727] dark:border-gray-700'
           onClick={() => {
-            lightMode.current.style.display = "block";
-            darkMode.current.style.display = "none";
             toggleDarkTheme();
           }}>
           <MdDarkMode />
@@ -220,8 +232,6 @@ export default function Nav() {
           ref={lightMode}
           className='hidden fixed z-50 bottom-20 right-3 bg-white text-3xl border rounded-full p-3 shadow-lg dark:bg-[#272727] dark:border-gray-700'
           onClick={() => {
-            lightMode.current.style.display = "none";
-            darkMode.current.style.display = "block";
             toggleLightTheme();
           }}>
           <BsSun />
