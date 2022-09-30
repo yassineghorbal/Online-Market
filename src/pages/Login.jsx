@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
 import axios from "axios";
+import { BiShow, BiHide } from "react-icons/bi";
+import React from "react";
 
 export default function Login() {
   const { user, loginChange } = useContext(UserContext);
@@ -34,6 +36,26 @@ export default function Login() {
       });
   };
 
+  // show and hide password
+  const password = React.createRef();
+  const showPwd = React.createRef();
+  const hidePwd = React.createRef();
+
+  const showPassword = function (e) {
+    e.preventDefault();
+    if (user.password === "") return;
+    password.current.setAttribute("type", "text");
+    showPwd.current.style.display = "none";
+    hidePwd.current.style.display = "block";
+  };
+
+  const hidePassword = function (e) {
+    e.preventDefault();
+    password.current.setAttribute("type", "password");
+    showPwd.current.style.display = "block";
+    hidePwd.current.style.display = "none";
+  };
+
   return (
     <div className='w-11/12 p-10 border mt-2 max-w-lg mx-auto shadow-xl dark:border-[#272727]'>
       <header className='text-center'>
@@ -58,14 +80,27 @@ export default function Login() {
             onChange={(e) => loginChange(e)}
           />
         </div>
-        <div className='mb-6'>
+        <div className='mb-6 relative'>
           <label className='inline-block text-lg mb-2'>Password</label>
           <input
+            ref={password}
             type='password'
             className='p-2 w-full bg-transparent border dark:border-[#272727]'
             name='password'
             onChange={(e) => loginChange(e)}
           />
+          <button
+            ref={showPwd}
+            className='absolute text-xl right-5 bottom-3'
+            onClick={showPassword}>
+            <BiShow />
+          </button>
+          <button
+            ref={hidePwd}
+            className='hidden absolute text-xl right-5 bottom-3'
+            onClick={hidePassword}>
+            <BiHide />
+          </button>
         </div>
         <div className='mb-6'>
           <button
