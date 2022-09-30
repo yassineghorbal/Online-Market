@@ -211,7 +211,7 @@ export default function Home() {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         id='goUpBtn'
-        className='fixed z-50 bottom-3 right-3 bg-white text-3xl border rounded-full p-3 shadow-lg'>
+        className='hidden fixed z-50 bottom-3 right-3 bg-white text-3xl border rounded-full p-3 shadow-lg'>
         <BiUpArrowAlt />
       </button>
     </>
