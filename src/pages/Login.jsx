@@ -35,12 +35,10 @@ export default function Login() {
   };
 
   return (
-    <div className='w-11/12 p-10 border mt-2 max-w-lg mx-auto shadow-xl'>
+    <div className='w-11/12 p-10 border mt-2 max-w-lg mx-auto shadow-xl dark:border-[#272727]'>
       <header className='text-center'>
         <h2 className='text-2xl font-bold uppercase mb-1'>Log In</h2>
-        <p className='mb-4'>
-          Log in to start buying and selling whatever you like
-        </p>
+        <p className='mb-4'>Log in to sell whatever you like</p>
       </header>
 
       <p className='my-5 text-center text-red-500 hidden' id='error_401'>
@@ -55,7 +53,7 @@ export default function Login() {
           <label className='inline-block text-lg mb-2'>Email</label>
           <input
             type='email'
-            className='border border-gray-200 p-2 w-full'
+            className='p-2 w-full bg-transparent border dark:border-[#272727]'
             name='email'
             onChange={(e) => loginChange(e)}
           />
@@ -64,7 +62,7 @@ export default function Login() {
           <label className='inline-block text-lg mb-2'>Password</label>
           <input
             type='password'
-            className='border border-gray-200 p-2 w-full'
+            className='p-2 w-full bg-transparent border dark:border-[#272727]'
             name='password'
             onChange={(e) => loginChange(e)}
           />
@@ -79,7 +77,7 @@ export default function Login() {
         <div className='mt-8'>
           <p>
             Don't have an account? &nbsp;
-            <Link to='/register' className='text-gray-800 hover:underline'>
+            <Link to='/register' className='hover:underline'>
               Register
             </Link>
           </p>

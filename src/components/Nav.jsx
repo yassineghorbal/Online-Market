@@ -72,7 +72,7 @@ export default function Nav() {
   let renderUlSmallNav = () => {
     if (token === null) {
       return (
-        <ul className='flex-row text-black'>
+        <ul className='flex-row'>
           <li className='my-3'>
             <Link to='/search' className='hover:border p-3'>
               Search
@@ -92,7 +92,7 @@ export default function Nav() {
       );
     } else {
       return (
-        <ul className='flex-row text-black'>
+        <ul className='flex-row'>
           <li className='my-3'>
             <Link to='/search' className='hover:border p-3'>
               Search
@@ -203,12 +203,12 @@ export default function Nav() {
         </button>
         <div
           ref={smallNav}
-          className='hidden md:hidden absolute border top-14 w-11/12 py-2 text-center bg-white shadow-lg'>
+          className='hidden md:hidden absolute border top-14 w-11/12 py-2 text-center bg-white shadow-lg z-50 dark:bg-[#272727] dark:border-[#272727]'>
           {renderUlSmallNav()}
         </div>
         <button
           ref={darkMode}
-          className='text-xl'
+          className='text-3xl fixed z-50 bottom-20 right-3 bg-white border rounded-full p-3 shadow-lg dark:bg-[#272727] dark:border-gray-700'
           onClick={() => {
             lightMode.current.style.display = "block";
             darkMode.current.style.display = "none";
@@ -218,7 +218,7 @@ export default function Nav() {
         </button>
         <button
           ref={lightMode}
-          className='hidden text-xl'
+          className='hidden fixed z-50 bottom-20 right-3 bg-white text-3xl border rounded-full p-3 shadow-lg dark:bg-[#272727] dark:border-gray-700'
           onClick={() => {
             lightMode.current.style.display = "none";
             darkMode.current.style.display = "block";

@@ -106,7 +106,7 @@ export default function Home() {
           </div>
           <div
             id='create_form'
-            className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border items-center hidden'>
+            className='justify-center w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-5 border items-center hidden dark:border-[#272727]'>
             <h1 className='text-lg text-green-700 m-5 p-3 text-center border border-green-700 w-2/3 mx-auto'>
               Add an item to sell
             </h1>
@@ -118,7 +118,7 @@ export default function Home() {
                 <label className='inline-block text-lg mb-2'>Name</label>
                 <input
                   type='text'
-                  className='border border-gray-200 p-2 w-full'
+                  className='p-2 w-full bg-transparent border dark:border-[#272727]'
                   name='item_name'
                   onChange={(e) => itemDataChange(e)}
                 />
@@ -126,7 +126,7 @@ export default function Home() {
               <div className='mb-6'>
                 <label className='inline-block text-lg mb-2'>Description</label>
                 <textarea
-                  className='border border-gray-200 p-2 w-full'
+                  className='p-2 w-full bg-transparent border dark:border-[#272727]'
                   name='description'
                   onChange={(e) => itemDataChange(e)}
                 />
@@ -135,7 +135,7 @@ export default function Home() {
                 <label className='inline-block text-lg mb-2'>Price</label>
                 <input
                   type='number'
-                  className='border border-gray-200 p-2 w-full'
+                  className='p-2 w-full bg-transparent border dark:border-[#272727]'
                   name='price'
                   onChange={(e) => itemDataChange(e)}
                 />
@@ -144,7 +144,7 @@ export default function Home() {
                 <label className='inline-block text-lg mb-2'>Image</label>
                 <input
                   type='url'
-                  className='border border-gray-200 p-2 w-full'
+                  className='p-2 w-full bg-transparent border dark:border-[#272727]'
                   name='src'
                   placeholder='put a link to your hosted image here'
                   onChange={(e) => itemDataChange(e)}

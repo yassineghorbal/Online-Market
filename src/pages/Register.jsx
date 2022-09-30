@@ -37,7 +37,7 @@ export default function Register() {
   };
 
   return (
-    <div className='w-11/12 p-10 border mt-2 max-w-lg mx-auto shadow-xl'>
+    <div className='w-11/12 p-10 border mt-2 max-w-lg mx-auto shadow-xl dark:border-[#272727]'>
       <header className='text-center'>
         <h2 className='text-2xl font-bold uppercase mb-1'>Register</h2>
         <p className='mb-4'>Create an account</p>
@@ -55,7 +55,7 @@ export default function Register() {
           <label className='inline-block text-lg mb-2'>Name</label>
           <input
             type='text'
-            className='border border-gray-200 p-2 w-full'
+            className='p-2 w-full bg-transparent border dark:border-[#272727]'
             name='name'
             onChange={(e) => registerChange(e)}
           />
@@ -64,7 +64,7 @@ export default function Register() {
           <label className='inline-block text-lg mb-2'>Phone</label>
           <input
             type='phone'
-            className='border border-gray-200 p-2 w-full'
+            className='p-2 w-full bg-transparent border dark:border-[#272727]'
             name='phone'
             onChange={(e) => registerChange(e)}
           />
@@ -73,7 +73,7 @@ export default function Register() {
           <label className='inline-block text-lg mb-2'>Email</label>
           <input
             type='email'
-            className='border border-gray-200 p-2 w-full'
+            className='p-2 w-full bg-transparent border dark:border-[#272727]'
             name='email'
             onChange={(e) => registerChange(e)}
           />
@@ -82,7 +82,7 @@ export default function Register() {
           <label className='inline-block text-lg mb-2'>Password</label>
           <input
             type='password'
-            className='border border-gray-200 p-2 w-full'
+            className='p-2 w-full bg-transparent border dark:border-[#272727]'
             name='password'
             onChange={(e) => registerChange(e)}
             id='pwd'
@@ -92,7 +92,7 @@ export default function Register() {
           <label className='inline-block text-lg mb-2'>Confirm Password</label>
           <input
             type='password'
-            className='border border-gray-200 p-2 w-full'
+            className='p-2 w-full bg-transparent border dark:border-[#272727]'
             name='password_confirmation'
             onChange={(e) => registerChange(e)}
             id='pwd_confirm'
@@ -108,7 +108,7 @@ export default function Register() {
         <div className='mt-8'>
           <p>
             Already have an account? &nbsp;
-            <Link to='/login' className='text-gray-800 hover:underline'>
+            <Link to='/login' className='hover:underline'>
               Login
             </Link>
           </p>
