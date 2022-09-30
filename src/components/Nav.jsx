@@ -72,7 +72,7 @@ export default function Nav() {
   let renderUlSmallNav = () => {
     if (token === null) {
       return (
-        <ul className='flex-row'>
+        <ul className='flex-row text-black'>
           <li className='my-3'>
             <Link to='/search' className='hover:border p-3'>
               Search
@@ -92,7 +92,7 @@ export default function Nav() {
       );
     } else {
       return (
-        <ul className='flex-row'>
+        <ul className='flex-row text-black'>
           <li className='my-3'>
             <Link to='/search' className='hover:border p-3'>
               Search
@@ -180,7 +180,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className='w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto flex justify-between items-center text-gray-900 p-5 h-14 shadow dark:text-white dark:bg-[#272727]'>
+      <nav className='w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto flex justify-between items-center p-5 h-14 shadow dark:border dark:border-[#272727]'>
         <Link to='/' className='text-2xl flex ml-0 md:ml-5 hover:translate-x-1'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span>Online Market</span>

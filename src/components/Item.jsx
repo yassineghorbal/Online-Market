@@ -75,10 +75,10 @@ export default function Item({ item }) {
 
   return (
     <>
-      <div className='w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-3 shadow-md border relative dark:bg-[#272727] dark:border-none'>
+      <div className='w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-3 shadow-md relative dark:bg-[#272727] dark:rounded border border-gray-300 dark:border-gray-900'>
         <Link to={"/account"}>
           <div className='flex m-3'>
-            <span className='border border-green-400 rounded-full p-3 text-xl'>
+            <span className='border border-green-400 rounded-full p-3 text-xl dark:border-green-300'>
               <FaUserAlt />
             </span>{" "}
             <div className='block'>
@@ -93,8 +93,8 @@ export default function Item({ item }) {
         <Link className='hover:cursor-pointer' to={`/item/${item.id}`}>
           <div>
             <img className='mx-0 my-2' src={item.src} alt={item.item_name} />
-            <p className='ml-3 mt-2'>{item.item_name}</p>
-            <p className='ml-3 mt-2'>
+            <p className='ml-3 mt-5'>{item.item_name}</p>
+            <p className='ml-3 my-2'>
               <strong>Price: </strong>${item.price}
             </p>
           </div>
@@ -119,7 +119,7 @@ export default function Item({ item }) {
             console.log("added to favorites");
           }}
           ref={saveBtn}
-          className='absolute bottom-5 right-7 text-xl hover:border rounded-full p-3'>
+          className='absolute bottom-5 right-7 text-xl hover:border rounded-full p-3 dark:border-gray-500'>
           <MdOutlineFavoriteBorder />
         </button>
         <button
@@ -129,7 +129,7 @@ export default function Item({ item }) {
             console.log("removed from favorites");
           }}
           ref={removeBtn}
-          className='hidden absolute bottom-5 right-7 text-xl hover:border rounded-full p-3'>
+          className='hidden absolute bottom-5 right-7 text-xl hover:border rounded-full p-3 dark:border-gray-500'>
           <MdOutlineFavorite />
         </button>
       </div>

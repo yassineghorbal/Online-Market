@@ -66,7 +66,7 @@ export default function Home() {
       return (
         <div
           id='hero'
-          className='box md:flex shadow-md items-center justify-center m-10 border w-11/12 mx-auto md:py-7 py-0'>
+          className='box md:flex shadow-md items-center justify-center m-10 border w-11/12 mx-auto md:py-7 py-0 dark:border-[#272727]'>
           <div className='md:text-center text-left'>
             <p className='md:text-2xl text-lg md:ml-0 ml-5 md:mt-0 mt-5'>
               Post Ads For What ever You Need To Sell For Free
@@ -94,13 +94,13 @@ export default function Home() {
         <>
           <div
             id='logged_in_hero'
-            className='box justify-center w-11/12 md:w-1/2 mx-auto my-5 border block md:flex items-center'>
-            <p className='text-lg text-green-700 m-3 md:m-5'>
+            className='box justify-center w-11/12 md:w-1/2 mx-auto my-5 border block md:flex items-center dark:border-[#272727]'>
+            <p className='text-lg text-green-700 m-3 md:m-5 dark:text-green-500'>
               You need to sell something ?
             </p>
             <button
               onClick={showForm}
-              className='border border-black m-3 px-2 text-sm hover:border-green-700 hover:bg-green-700 hover:text-white py-2'>
+              className='border border-black m-3 px-2 text-sm hover:border-green-700 hover:bg-green-700 hover:text-white py-2 dark:border-white'>
               Start Now
             </button>
           </div>
@@ -211,7 +211,7 @@ export default function Home() {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         id='goUpBtn'
-        className='hidden fixed z-50 bottom-3 right-3 bg-white text-3xl border rounded-full p-3 shadow-lg'>
+        className='hidden fixed z-50 bottom-3 right-3 bg-white text-3xl border rounded-full p-3 shadow-lg dark:bg-[#272727] dark:border-gray-700'>
         <BiUpArrowAlt />
       </button>
     </>
