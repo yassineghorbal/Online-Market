@@ -60,7 +60,7 @@ export default function Nav() {
             </li>
           </Link>
           <button onClick={logout}>
-            <li className='text-sm p-2 hover:border-b-2 flex items-center'>
+            <li className='text-sm p-2 border hover:border-b-2 flex items-center'>
               Log out &nbsp;
               <VscSignOut />
             </li>

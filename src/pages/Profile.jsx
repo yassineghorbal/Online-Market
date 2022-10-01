@@ -147,11 +147,11 @@ export default function Profile() {
     if (user_id === null) {
       return (
         <>
-          <div className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border flex items-center'>
+          <div className='justify-center w-11/12 md:w-1/2 mx-auto my-5 border flex items-center dark:border-[#272727]'>
             You need to Log in
             <Link
               to='/login'
-              className='m-5 border text-black px-3 py-2 hover:text-white dark:text-white hover:bg-green-700'>
+              className='m-5 border text-black px-3 py-2 hover:text-white dark:text-white hover:bg-green-700 dark:border-[#272727]'>
               Log in
             </Link>
           </div>

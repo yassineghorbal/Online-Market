@@ -45,7 +45,7 @@ export default function Item({ item }) {
   return (
     <>
       <div className='w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-3 shadow-md relative dark:bg-[#272727] dark:rounded border border-gray-300 dark:border-gray-900'>
-        <Link to={"/account"}>
+        <Link to={`/account/${item.id}`}>
           <div className='flex m-3'>
             <span className='border border-green-400 rounded-full p-3 text-xl dark:border-green-300'>
               <FaUserAlt />

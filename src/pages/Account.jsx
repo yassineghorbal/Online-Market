@@ -1,12 +1,13 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import axios from "axios";
 import Item from "../components/Item";
+import { useParams } from "react-router-dom";
 
 export default function Account() {
   let [items, setItems] = useState([]);
   items = useRef([]);
 
-  const id = JSON.parse(localStorage.getItem("id"));
+  const { id } = useParams();
 
   const getUserItems = useCallback(() => {
     axios.get(`http://127.0.0.1:8000/api/items/user/${id}`).then((res) => {
