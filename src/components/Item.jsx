@@ -6,18 +6,14 @@ import React from "react";
 import { useCallback } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 
 export default function Item({ item }) {
-  const token = JSON.parse(localStorage.getItem("token"));
-  const id = JSON.parse(localStorage.getItem("id"));
-
   // delete
   const deleteItem = () => {
     axios
       .delete(`http://127.0.0.1:8000/api/items/${item.id}`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.token}`,
         },
       })
       .then((res) => {
@@ -45,33 +41,6 @@ export default function Item({ item }) {
   useEffect(() => {
     showBtns();
   }, [showBtns]);
-
-  // save to favorites
-  const saveBtn = React.createRef();
-  const removeBtn = React.createRef();
-
-  const user_id = id;
-  const item_id = item.id;
-
-  const itemToAddData = {
-    user_id,
-    item_id,
-  };
-
-  const addItemToFavorites = () => {
-    axios
-      .post("http://127.0.0.1:8000/api/favorites", itemToAddData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
 
   return (
     <>
@@ -111,27 +80,6 @@ export default function Item({ item }) {
           className='hidden m-5 border text-green-500 p-3 hover:text-white hover:bg-green-500 absolute bottom-0.5 right-12 items-center'>
           <FiEdit2 />
         </Link>
-        <button
-          onClick={() => {
-            saveBtn.current.style.display = "none";
-            removeBtn.current.style.display = "block";
-            addItemToFavorites();
-            console.log("added to favorites");
-          }}
-          ref={saveBtn}
-          className='absolute bottom-5 right-7 text-xl hover:border rounded-full p-3 dark:border-gray-500'>
-          <MdOutlineFavoriteBorder />
-        </button>
-        <button
-          onClick={() => {
-            saveBtn.current.style.display = "block";
-            removeBtn.current.style.display = "none";
-            console.log("removed from favorites");
-          }}
-          ref={removeBtn}
-          className='hidden absolute bottom-5 right-7 text-xl hover:border rounded-full p-3 dark:border-gray-500'>
-          <MdOutlineFavorite />
-        </button>
       </div>
     </>
   );

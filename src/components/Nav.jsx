@@ -224,14 +224,14 @@ export default function Nav() {
     <>
       <nav
         id='box'
-        className='w-full md:w-3/4 lg:w-1/2 mx-auto flex justify-between items-center p-5 h-14 shadow dark:border dark:border-[#272727]'>
+        className='w-full lg:w-2/3 mx-auto flex justify-between items-center p-5 h-14 shadow dark:border dark:border-[#272727]'>
         <Link to='/' className='text-2xl flex ml-0 hover:translate-x-1'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span>Online Market</span>
         </Link>
 
-        {renderUl()}
-        <div className='flex gap-5'>
+        <div className='flex gap-2'>
+          {renderUl()}
           <button
             ref={darkMode}
             className='bg-white border rounded-full p-3 shadow-2xl dark:bg-[#272727] border-gray-700 ml-0'
