@@ -224,55 +224,57 @@ export default function Nav() {
     <>
       <nav
         id='box'
-        className='w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto flex justify-between items-center p-5 h-14 shadow dark:border dark:border-[#272727]'>
-        <Link to='/' className='text-2xl flex ml-0 md:ml-5 hover:translate-x-1'>
+        className='w-full md:w-3/4 lg:w-1/2 mx-auto flex justify-between items-center p-5 h-14 shadow dark:border dark:border-[#272727]'>
+        <Link to='/' className='text-2xl flex ml-0 hover:translate-x-1'>
           <img src={logo} alt='Logo' className='h-6 mr-3' />
           <span>Online Market</span>
         </Link>
 
         {renderUl()}
-        <button
-          ref={showBtn}
-          className='md:hidden block'
-          id='toggle'
-          onClick={showNav}>
-          <GiHamburgerMenu className='text-lg' />
-        </button>
-        <button
-          ref={hideBtn}
-          className='md:hidden hidden'
-          id='toggle'
-          onClick={hideNav}>
-          <VscChromeClose className='text-lg' />
-        </button>
+        <div className='flex gap-5'>
+          <button
+            ref={darkMode}
+            className='bg-white border rounded-full p-3 shadow-2xl dark:bg-[#272727] border-gray-700 ml-0'
+            onClick={() => {
+              toggleDarkTheme();
+            }}>
+            <MdDarkMode />
+          </button>
+          <button
+            ref={lightMode}
+            className='hidden bg-white border rounded-full p-3 shadow-2xl dark:bg-[#272727] border-gray-700 ml-0'
+            onClick={() => {
+              toggleLightTheme();
+            }}>
+            <BsSun />
+          </button>
+          <button
+            ref={showBtn}
+            className='md:hidden block bg-white border rounded-full p-3 shadow-2xl dark:bg-[#272727] border-gray-700 ml-0'
+            id='toggle'
+            onClick={showNav}>
+            <GiHamburgerMenu className='text-lg' />
+          </button>
+          <button
+            ref={hideBtn}
+            className='md:hidden hidden bg-white border rounded-full p-3 shadow-2xl dark:bg-[#272727] border-gray-700 ml-0'
+            id='toggle'
+            onClick={hideNav}>
+            <VscChromeClose className='text-lg' />
+          </button>
+        </div>
         <div
           ref={smallNav}
           className='hidden md:hidden absolute border top-14 w-11/12 py-2 text-center bg-white shadow-lg z-50 dark:bg-[#272727] dark:border-[#272727]'>
           {renderUlSmallNav()}
         </div>
-        <button
-          ref={darkMode}
-          className='text-3xl fixed z-50 bottom-20 right-3 bg-white border rounded-full p-3 shadow-lg dark:bg-[#272727] dark:border-gray-700'
-          onClick={() => {
-            toggleDarkTheme();
-          }}>
-          <MdDarkMode />
-        </button>
-        <button
-          ref={lightMode}
-          className='hidden fixed z-50 bottom-20 right-3 bg-white text-3xl border rounded-full p-3 shadow-lg dark:bg-[#272727] dark:border-gray-700'
-          onClick={() => {
-            toggleLightTheme();
-          }}>
-          <BsSun />
-        </button>
       </nav>
       <button
         onClick={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         id='goUpBtn'
-        className='hidden fixed z-50 bottom-3 right-3 bg-white text-3xl border rounded-full p-3 shadow-lg dark:bg-[#272727] dark:border-gray-700'>
+        className='hidden fixed z-50 bottom-3 right-5 bg-white text-3xl border rounded-full p-3 shadow-2xl dark:bg-[#272727] border-gray-700'>
         <BiUpArrowAlt />
       </button>
     </>
