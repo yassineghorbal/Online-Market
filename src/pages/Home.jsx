@@ -85,7 +85,7 @@ export default function Home() {
       .catch(e => {
         console.log(e.response);
         error_status = e.response.status;
-        if (error_status === 422) {
+        if (error_status === 422 || error_status === 500) {
           error_422.style.display = 'block';
         }
       });
